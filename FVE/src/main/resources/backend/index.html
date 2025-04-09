@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>瑞吉外卖管理端</title>
+    <title>蔬鲜递管理端</title>
     <link rel="shortcut icon" href="favicon.ico">
     <!-- 引入样式 -->
     <link rel="stylesheet" href="plugins/element-ui/index.css" />
@@ -16,11 +16,186 @@
         min-width: 1366px;
       }
       .app-main{
-        height: calc(100% - 64px);
+        height: calc(100vh - 50px - 30px);
+        overflow-y: auto;
       }
       .app-main .divTmp{
         width: 100%;
         height: 100%;
+      }
+
+      .app-wrapper {
+        background-color: #f4f6f9;
+      }
+
+      /* --- Sidebar Container --- */
+      .sidebar-container {
+        background-color: #adc8a2;
+        box-shadow: 2px 0 6px rgba(0,21,41,.05);
+      }
+
+      .sidebar-container .logo {
+        background-color: #adc8a2;
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .sidebar-container .logo img {
+        width: 130px;
+        height: auto;
+      }
+
+      /* --- Sidebar Menu --- */
+      .sidebar-container .el-scrollbar {
+        height: calc(100% - 71px);
+      }
+
+      .sidebar-container .el-menu {
+        background-color: #adc8a2 !important;
+        border-right: none;
+      }
+
+      /* 默认菜单项 */
+      .sidebar-container .el-menu .el-menu-item,
+      .sidebar-container .el-menu .el-submenu__title {
+        background-color: #adc8a2 !important;
+        color: #333333 !important; /* 默认文字 - 黑色 */
+        transition: background-color 0.2s; /* 只过渡背景色 */
+      }
+      .sidebar-container .el-menu .el-menu-item i,
+      .sidebar-container .el-menu .el-submenu__title i {
+        color: #333333 !important; /* 默认图标 - 黑色 */
+      }
+
+      /* 鼠标悬停 */
+      .sidebar-container .el-menu .el-menu-item:hover,
+      .sidebar-container .el-menu .el-submenu__title:hover {
+        background-color: #ffffff !important; /* 悬停背景变白 */
+        /* 文字和图标颜色保持默认的黑色，无需在此处覆盖 */
+      }
+      /* 如果需要显式指定悬停颜色，可以取消下面的注释 */
+      /*
+      .sidebar-container .el-menu .el-menu-item:hover,
+      .sidebar-container .el-menu .el-submenu__title:hover {
+        color: #333333 !important;
+      }
+      .sidebar-container .el-menu .el-menu-item:hover i,
+      .sidebar-container .el-menu .el-submenu__title:hover i {
+        color: #333333 !important;
+      }
+      */
+
+
+      /* 激活菜单项 */
+      .sidebar-container .el-menu .el-menu-item.is-active {
+        background-color: #ffffff !important; /* 激活背景也是白色 */
+        color: #333333 !important; /* 激活文字 - 黑色 */
+        font-weight: bold;
+      }
+      .sidebar-container .el-menu .el-menu-item.is-active i {
+        color: #333333 !important; /* 激活图标 - 黑色 */
+      }
+
+      /* 子菜单设置 */
+      .sidebar-container .el-menu .el-menu--inline {
+        background-color: #adc8a2 !important;
+      }
+      .sidebar-container .el-menu .el-menu--inline .el-menu-item {
+        background-color: #adc8a2 !important;
+        color: #333333 !important;
+      }
+      .sidebar-container .el-menu .el-menu--inline .el-menu-item i {
+        color: #333333 !important;
+      }
+
+      .sidebar-container .el-menu .el-menu--inline .el-menu-item:hover {
+        background-color: #ffffff !important;
+        /* 文字和图标颜色保持默认的黑色 */
+      }
+      /* 如果需要显式指定悬停颜色，可以取消下面的注释 */
+      /*
+      .sidebar-container .el-menu .el-menu--inline .el-menu-item:hover {
+          color: #333333 !important;
+      }
+      .sidebar-container .el-menu .el-menu--inline .el-menu-item:hover i {
+          color: #333333 !important;
+      }
+      */
+
+      .sidebar-container .el-menu .el-menu--inline .el-menu-item.is-active {
+        background-color: #ffffff !important;
+        color: #333333 !important;
+        font-weight: normal;
+      }
+      .sidebar-container .el-menu .el-menu--inline .el-menu-item.is-active i {
+        color: #333333 !important;
+      }
+
+      /* --- Main Container & Navbar (保持不变) --- */
+      .main-container {
+        background-color: #f4f6f9;
+        padding: 15px;
+        box-sizing: border-box;
+      }
+
+      .navbar {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e4e7ed;
+        height: 50px;
+        line-height: 50px;
+        box-shadow: 0 1px 4px rgba(0,21,41,.08);
+      }
+      .navbar .head-lable {
+        line-height: 50px;
+        margin-left: 15px;
+      }
+      .navbar .right-menu {
+        line-height: 50px;
+        margin-right: 15px;
+      }
+      .navbar .right-menu .avatar-wrapper {
+        margin-right: 15px;
+      }
+
+      .navbar .head-lable span {
+        color: #303133;
+        font-size: 14px;
+      }
+
+      .navbar .head-lable .goBack {
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      .navbar .head-lable .goBack img{
+        vertical-align: middle;
+        margin-bottom: 2px;
+        width: 16px;
+      }
+
+      .navbar .right-menu .avatar-wrapper {
+        color: #303133;
+        font-size: 14px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .navbar .right-menu .outLogin {
+        cursor: pointer;
+        vertical-align: middle;
+        width: 18px;
+      }
+
+      .c_iframe {
+        background-color: #ffffff;
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+      }
+
+      .app-main .el-loading-mask {
+        background-color: rgba(244, 246, 249, 0.8);
       }
     </style>
   </head>
@@ -32,7 +207,7 @@
         <div class="sidebar-container">
           <div class="logo">
             <!-- <img src="images/logo.png" width="122.5" alt="" /> -->
-            <img src="images/login/login-logo.png" alt="" style="width: 117px; height: 32px" />
+            <img src="images/login/login-logo.png" alt="" style="width: 130px; height: 40px" />
           </div>
 
           <el-scrollbar wrap-class="scrollbar-wrapper">

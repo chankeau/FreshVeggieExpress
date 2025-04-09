@@ -2,100 +2,138 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  background-color: #333;
+  height: 100vh; /* 使用 vh 确保全屏 */
+  /* 背景可以选择纯色、渐变或图片 */
+  background-color: #f8fafc; /* 选项1: 浅灰色背景 */
+  /* background: linear-gradient(to bottom right, #a3e635, #f8fafc); */ /* 选项2: 绿色渐变 */
+  /* background-image: url('../../images/login/veggie_background_blur.jpg'); */ /* 选项3: 模糊蔬菜背景图 (需要自备图片) */
+  /* background-size: cover; */
 }
+
+/* --- Login Box --- */
 .login-box {
-  width: 1000px;
-  height: 474.38px;
+  width: 800px; /* 可以适当调整宽度 */
+  height: 450px; /* 可以适当调整高度 */
   border-radius: 8px;
   display: flex;
+  background-color: #ffffff; /* 盒子背景为白色 */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* 加一点阴影 */
+  overflow: hidden; /* 防止图片溢出圆角 */
 }
 
+/* 左侧图片区域 */
 .login-box img {
-  width: 60%;
-  height: auto;
+  width: 55%; /* 调整图片宽度占比 */
+  height: 100%;
+  object-fit: cover; /* 图片覆盖区域，不变形 */
+  /* 建议替换 login-l.jpg 为更符合蔬菜主题的图片 */
 }
 
-.title {
-  margin: 0px auto 30px auto;
-  text-align: center;
-  color: #707070;
-}
+/* --- Login Form Area --- */
 .login-form {
-  background: #ffffff;
-  width: 40%;
-  border-radius: 0px 8px 8px 0px;
+  background: transparent; /* 表单区域背景透明，使用盒子的白色背景 */
+  width: 45%; /* 调整表单宽度占比 */
+  border-radius: 0; /* 去掉单独的圆角 */
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px; /* 增加一些内边距 */
 }
+
 .login-form .el-form {
-  width: 214px;
-  height: 307px;
+  width: 100%; /* 表单宽度占满容器 */
+  max-width: 300px; /* 可以设一个最大宽度 */
+  height: auto; /* 高度自适应 */
 }
+
+/* Logo标题区域 */
+.login-form-title {
+  height: auto; /* 高度自适应 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.login-form-title img {
+  /* 确保这里使用的是你的新Logo */
+  width: 150px; /* 调整Logo大小 */
+  height: auto;
+}
+
+/* --- Input Fields --- */
 .login-form .el-form-item {
-  margin-bottom: 30px;
+  margin-bottom: 25px; /* 调整表单项间距 */
 }
-.login-form .el-form-item.is-error .el-input__inner {
-  border: 0 !important;
-  border-bottom: 1px solid #fd7065 !important;
-  background: #fff !important;
-}
-.login-form .input-icon {
-  height: 32px;
-  width: 18px;
-  margin-left: -2px;
-}
+
+/* 输入框样式 */
 .login-form .el-input__inner {
-  border: 0;
-  border-bottom: 1px solid #e9e9e8;
-  border-radius: 0;
+  border: 1px solid #e2e8f0; /* 使用统一样式边框 */
+  border-radius: 4px; /* 轻微圆角 */
   font-size: 14px;
   font-weight: 400;
   color: #333333;
-  height: 32px;
-  line-height: 32px;
-}
-.login-form .el-input__prefix {
-  left: 0;
-}
-.login-form .el-input--prefix .el-input__inner {
-  padding-left: 26px;
+  height: 40px; /* 增加输入框高度 */
+  line-height: 40px;
+  background: #ffffff;
 }
 .login-form .el-input__inner::placeholder {
   color: #aeb5c4;
 }
+
+/* 输入框获得焦点时 */
+.login-form .el-input__inner:focus {
+  border-color: #84cc16; /* 焦点时边框变绿 */
+  box-shadow: 0 0 0 2px rgba(132, 204, 22, 0.2); /* 可选：加一点辉光效果 */
+}
+
+/* 去掉原有的下划线样式 */
+.login-form .el-form-item.is-error .el-input__inner {
+  border: 1px solid #f56c6c !important; /* 错误时边框变红 */
+  border-bottom: 1px solid #f56c6c !important; /* 保持边框一致性 */
+}
+
+.login-form .el-input__prefix {
+  left: 10px; /* 图标位置调整 */
+  color: #aeb5c4;
+}
+.login-form .el-input--prefix .el-input__inner {
+  padding-left: 35px; /* 为图标留出空间 */
+}
+
 .login-form .el-form-item--medium .el-form-item__content {
-  line-height: 32px;
+  line-height: 40px;
 }
 .login-form .el-input--medium .el-input__icon {
-  line-height: 32px;
+  line-height: 40px;
 }
+
+
+/* --- Login Button --- */
 .login-btn {
-  border-radius: 17px;
-  padding: 11px 20px !important;
+  border-radius: 4px; /* 按钮圆角与输入框统一 */
+  padding: 12px 20px !important; /* 调整按钮内边距 */
   margin-top: 10px;
   font-weight: 500;
   font-size: 14px;
-  border: 0;
-  background-color: #ffc200;
+  border: none; /* 去掉边框 */
+  background-color: #84cc16; /* 按钮背景用主绿色 */
+  color: #ffffff; /* 按钮文字用白色 */
+  width: 100%; /* 按钮宽度占满 */
+  transition: background-color 0.3s ease; /* 添加过渡效果 */
 }
-.login-btn:hover,
+
+.login-btn:hover {
+  background-color: #a3e635; /* 悬停时用浅绿色 */
+  color: #ffffff;
+}
 .login-btn:focus {
-  /* background: #FFC200; */
-  /* color: #ffffff; */
+  background-color: #a3e635;
+  color: #ffffff;
 }
-.login-form-title {
-  height: 36px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 40px;
-}
-.login-form-title .title-label {
-  font-weight: 500;
-  font-size: 20px;
-  color: #333333;
-  margin-left: 10px;
+
+/* Loading状态 */
+.login-btn.is-loading {
+  background-color: #a3e635;
+  color: #ffffff;
 }
