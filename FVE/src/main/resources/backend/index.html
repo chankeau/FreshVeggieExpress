@@ -339,11 +339,13 @@
         },
         computed: {},
         created() {
-          const userInfo = window.localStorage.getItem('userInfo')
-          if (userInfo) {
-            this.userInfo = JSON.parse(userInfo)
+          const userInfo = window.localStorage.getItem('userInfo');
+          if (!userInfo) {
+            window.location.href = '/backend/page/login/login.html';
+          } else {
+            this.userInfo = JSON.parse(userInfo);
           }
-          this.closeLoading()
+          this.closeLoading();
         },
         beforeDestroy() {
           this.timer = null

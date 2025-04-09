@@ -4,6 +4,7 @@ package com.itheima.fve.fve.controller
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.itheima.fve.fve.common.BaseContext;
 import com.itheima.fve.fve.common.R;
 import com.itheima.fve.fve.entity.Employee;
 import com.itheima.fve.fve.service.EmployeeService;
@@ -14,6 +15,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 
 @Slf4j
@@ -47,7 +49,11 @@ public class EmployeeController {
         //5、查看员工状态，如果为已禁用状态，则返回员工已禁用结果
         if(emp.getStatus()==0)return R.error("账号已禁用");
         //6、登录成功，将员工id存入Session并返回登录成功结果
-        request.getSession().setAttribute("employee", employee.getName());
+        log.info("登录成功，准备设置 Session 'employee' 为 ID: {}", emp.getId()); // 添加日志
+        request.getSession().setAttribute("employee", emp.getId()); // 注意是用 emp.getId()
+        Object sessionValueCheck = request.getSession().getAttribute("employee"); // 立即检查
+        log.info("Session 'employee' 设置后立即读取的值: {}", sessionValueCheck); // 添加日志
+
         return R.success(emp);
     }
 
@@ -79,7 +85,7 @@ public class EmployeeController {
 
 //        employee.setCreateTime(LocalDateTime.now());
 //        employee.setUpdateTime(LocalDateTime.now());
-
+//
 //        Long empId = (Long) request.getSession().getAttribute("employee");
 //        employee.setCreateUser(empId);
 //        employee.setUpdateUser(empId);
@@ -125,13 +131,11 @@ public class EmployeeController {
      */
     @PutMapping
     public R<String> update(HttpServletRequest request, @RequestBody Employee employee){
-        log.info(employee.toString());
+        log.info("更新员工信息: {}", employee.toString());
 
-        long id = Thread.currentThread().getId();
-        log.info("线程id为：{}", id);
-//        Long empId = (Long) request.getSession().getAttribute("employee");
-//        employee.setUpdateTime(LocalDateTime.now());
-//        employee.setUpdateUser(empId);
+        long threadId = Thread.currentThread().getId();
+        log.info("线程id为：{}", threadId);
+
         employeeService.updateById(employee);
 
         return R.success("员工信息修改成功");
