@@ -29,7 +29,7 @@ public class MyMetaObjecthandler implements MetaObjectHandler {
 
         // 填充创建人和更新人
         Long currentUserId = BaseContext.getCurrentId(); // 获取ID
-        log.info("从 BaseContext 获取到的当前用户 ID: {}", currentUserId); // **打印获取到的ID**
+        log.info("从 BaseContext 获取到的当前用户 ID: {}", currentUserId);
 
         if (currentUserId != null) {
             trySetFieldValByName("createUser", currentUserId, metaObject);
@@ -37,7 +37,7 @@ public class MyMetaObjecthandler implements MetaObjectHandler {
             log.info("成功设置 createUser 和 updateUser 为: {}", currentUserId);
         } else {
             log.warn("无法从 BaseContext 获取用户 ID，createUser 和 updateUser 未设置!");
-            // 如果业务强制要求创建人不能为空，这里可以抛出异常阻止插入
+            // 业务强制要求创建人不能为空，抛出异常阻止插入
              throw new IllegalStateException("无法获取当前操作用户ID，无法执行插入！");
         }
         log.debug("MetaObject after fill: {}", metaObject.getOriginalObject()); // 打印填充后状态
