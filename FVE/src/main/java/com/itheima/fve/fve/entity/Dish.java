@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- 菜品
+ 产品
  */
 @Data
 public class Dish implements Serializable {
@@ -20,17 +20,19 @@ public class Dish implements Serializable {
     private Long id;
 
 
-    //菜品名称
+    //产品名称
     private String name;
 
 
-    //菜品分类id
+    //产品分类id
     private Long categoryId;
 
 
-    //菜品价格
+    //产品价格
     private BigDecimal price;
 
+    //产品单位
+    private String unit;
 
     //商品码
     private String code;

@@ -67,16 +67,14 @@
             </el-image>
           </template>
         </el-table-column>
-        <el-table-column
-          prop="categoryName"
-          label="套餐分类"
-        ></el-table-column>
-        <el-table-column
-          prop="price"
-          label="套餐价"
-        >
+        <el-table-column label="套餐分类">
           <template slot-scope="scope">
-            <span>￥{{ scope.row.price/100 }}</span>
+            <span>{{ scope.row.categoryName }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="套餐价格">
+          <template slot-scope="scope">
+            <span>￥{{ scope.row.price ? scope.row.price.toFixed(2) : '0.00' }}</span>
           </template>
         </el-table-column>
         <el-table-column label="售卖状态">
@@ -221,7 +219,7 @@
                   this.$message.error(res.msg || '操作失败')
                 }
               }).catch(err => {
-                this.$message.error('请求出错了：' + err)
+                console.error('删除操作失败 (具体catch):', error);
               })
             })
           },
