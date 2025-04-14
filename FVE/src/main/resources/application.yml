@@ -9,22 +9,28 @@ spring:
       url: jdbc:mysql://localhost:3306/fve?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: root
       password: xxxxxx
-      http:
-        encoding:
-          charset: UTF-8
-          enabled: true
-          force: true
-      server:
-        servlet:
-          encoding:
-            charset: UTF-8
-            enabled: true
-            force: true
+
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: 824330126@qq.com
+    password: tswrtrirmwbxbcda
+    properties:
+      mail.smtp:
+        auth: true
+        starttls:
+          enable: true
+
+  server:
+    servlet:
+      encoding:
+        charset: UTF-8
+        enabled: true
+        force: true
   servlet:
     multipart:
       max-file-size: 2MB
       max-request-size: 2MB
-
 
 mybatis-plus:
   configuration:
@@ -33,9 +39,11 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: ASSIGN_ID
-      logging:
-        level:
-          com.itheima.fve.fve.filter: DEBUG
-          com.itheima.fve.fve.common: DEBUG
+
+logging:
+  level:
+    com.itheima.fve.fve: DEBUG
+    org.springframework.mail: DEBUG
+
 fve:
   path: D:\mavenproject\img\

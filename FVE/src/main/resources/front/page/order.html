@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no,minimal-ui">
-        <title>菩提阁</title>
+        <title>蔬鲜递</title>
         <link rel="icon" href="./../images/favico.ico">
         <!--不同屏幕尺寸根字体设置-->
         <script src="./../js/base.js"></script>
@@ -21,7 +21,7 @@
         <div id="order" class="app">
             <div class="divHead">
                 <div class="divTitle">
-                    <i class="el-icon-arrow-left" @click="goBack"></i>菩提阁
+                    <i class="el-icon-arrow-left" @click="goBack"></i>蔬鲜递
                 </div>
             </div>
             <div class="divBody" v-if="orderList.length > 0">
@@ -40,11 +40,11 @@
                         <div class="dishList">
                             <div v-for="(item,index) in order.orderDetails" :key="index" class="item">
                                 <span>{{item.name}}</span>
-                                <span>x{{item.number}}</span>
+                                <span>x{{item.quantity}}</span>
                             </div>
                         </div>
                         <div class="result">
-                            <span>共{{order.sumNum}} 件商品,实付</span><span class="price">￥{{order.amount}}</span>
+                            <span>共{{order.sumNum}} 件商品,实付</span><span class="price">{{order.amount}}</span>
                         </div>
                         <div class="btn" v-if="order.status === 4">
                             <div class="btnAgain" @click="addOrderAgain(order)">再来一单</div>
@@ -116,7 +116,7 @@
                             records.forEach(item=>{
                                 let number = 0
                                 item.orderDetails.forEach(ele=>{
-                                    number += ele.number
+                                    number += ele.quantity
                                 })
                                 item.sumNum = number
                             })

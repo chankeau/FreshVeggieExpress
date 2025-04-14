@@ -1,12 +1,27 @@
 package com.itheima.fve.fve.common;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.extern.slf4j.Slf4j;
+
+import java.time.LocalDateTime;
 
 /**
  * 基于ThreadLocal封装工具类，用户保存和获取当前登录用户id
  */
 @Slf4j
 public class BaseContext {
+    @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime createTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updateTime;
+
+    @TableField(fill = FieldFill.INSERT)
+    private Long createUser;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Long updateUser;
     private static ThreadLocal<Long> threadLocal = new ThreadLocal<>();
 
     /**
@@ -35,4 +50,5 @@ public class BaseContext {
         log.info("线程 {} - BaseContext 移除 ID", Thread.currentThread().getId());
         threadLocal.remove();
     }
+
 }

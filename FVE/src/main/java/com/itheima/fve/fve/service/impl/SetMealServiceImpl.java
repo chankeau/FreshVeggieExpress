@@ -38,7 +38,7 @@ public class SetMealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
     private CategoryService categoryService; // 注入 CategoryService
 
     /**
-     * 新增套餐，同时需要保存套餐和菜品关联关系
+     * 新增套餐，同时需要保存套餐和商品关联关系
      * @param setmealDto
      */
     @Override
@@ -47,7 +47,7 @@ public class SetMealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
         //保存套餐基本信息，操作setmeal，执行insert操作
         this.save(setmealDto); // 使用 this.save()
 
-        //保存套餐和菜品的关联信息，操作setmeal_dish，执行insert操作
+        //保存套餐和商品的关联信息，操作setmeal_dish，执行insert操作
         List<SetmealDish> setmealDishes = setmealDto.getSetmealDishes();
         //检查setmealDishes是否为空
         if (setmealDishes != null && !setmealDishes.isEmpty()) {
@@ -57,7 +57,7 @@ public class SetMealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
             }).collect(Collectors.toList());
             setmealDishService.saveBatch(setmealDishes);
         } else {
-            log.warn("新增套餐 {} 时未提供关联菜品信息", setmealDto.getName());
+            log.warn("新增套餐 {} 时未提供关联商品信息", setmealDto.getName());
         }
     }
 
@@ -184,9 +184,9 @@ public class SetMealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
         return setmealDtoPage;
     }
     /**
-     * 根据ID获取套餐信息和对应的菜品信息
+     * 根据ID获取套餐信息和对应的商品信息
      * @param id 套餐ID
-     * @return SetmealDto 包含套餐和菜品列表的 DTO，如果找不到则返回 null
+     * @return SetmealDto 包含套餐和商品列表的 DTO，如果找不到则返回 null
      */
     @Override // 记得加上 @Override 注解
     public SetmealDto getByIdWithDishes(Long id) {
@@ -199,18 +199,18 @@ public class SetMealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
             return null;
         }
 
-        // 2. 查询当前套餐对应的菜品信息 (setmeal_dish 表)
+        // 2. 查询当前套餐对应的商品信息 (setmeal_dish 表)
         LambdaQueryWrapper<SetmealDish> queryWrapper = new LambdaQueryWrapper<>();
         // 查询条件：setmeal_id 等于传入的 id (这里的 setmealId 是 SetmealDish 实体中的字段)
         queryWrapper.eq(SetmealDish::getSetmealId, id);
-        // 通过 SetmealDishService 查询关联的菜品列表
+        // 通过 SetmealDishService 查询关联的商品列表
         List<SetmealDish> dishes = setmealDishService.list(queryWrapper);
 
         // 3. 将查询到的 setmeal 信息和 dishes 列表组装成 SetmealDto 对象
         SetmealDto setmealDto = new SetmealDto();
         // 复制 setmeal 的属性到 setmealDto
         BeanUtils.copyProperties(setmeal, setmealDto);
-        // 设置菜品列表到 DTO 中
+        // 设置商品列表到 DTO 中
         setmealDto.setSetmealDishes(dishes);
 
         // 4. 返回组装好的 DTO 对象
@@ -222,7 +222,7 @@ public class SetMealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
 
     // --- 另外，你也需要实现 updateWithDish ---
     /**
-     * 更新套餐信息，同时更新套餐和菜品的关联关系
+     * 更新套餐信息，同时更新套餐和商品的关联关系
      * Controller 中处理 PUT 请求时会用到这个方法 (如果你添加了 @PutMapping 接口)
      * @param setmealDto
      */
@@ -232,15 +232,15 @@ public class SetMealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
         // 1. 更新套餐基本信息 (setmeal 表)
         this.updateById(setmealDto); // 使用 mybatis-plus 提供的 updateById 更新 Setmeal
 
-        // 2. 删除该套餐原有关联的菜品 (setmeal_dish 表)
+        // 2. 删除该套餐原有关联的商品 (setmeal_dish 表)
         LambdaQueryWrapper<SetmealDish> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(SetmealDish::getSetmealId, setmealDto.getId());
         setmealDishService.remove(queryWrapper); // 通过 SetmealDishService 删除
 
-        // 3. 获取 DTO 中新的菜品列表
+        // 3. 获取 DTO 中新的商品列表
         List<SetmealDish> setmealDishes = setmealDto.getSetmealDishes();
 
-        // 4. 给新的菜品列表设置正确的 setmealId
+        // 4. 给新的商品列表设置正确的 setmealId
         if (setmealDishes != null && !setmealDishes.isEmpty()) {
             setmealDishes = setmealDishes.stream().map((item) -> {
                 item.setSetmealId(setmealDto.getId()); // 设置当前套餐的 ID

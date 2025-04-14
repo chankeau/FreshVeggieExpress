@@ -1,153 +1,238 @@
-#order {
-  height: 100%;
+/* --- Global Variables --- */
+:root {
+  --fresh-green: #4CAF50; /* Main theme green */
+  --leaf-green: #8BC34A;  /* Lighter accent green */
+  --button-green-hover: #388E3C; /* Darker green for button hover */
+  --white: #ffffff;
+  --off-white: #f9f9f9; /* Slightly off-white for cards */
+  --page-bg: #f0f2f5; /* Light grey background for the page */
+  --text-dark: #333333;
+  --text-medium: #555555;
+  --text-light: #888888;
+  --border-light: #e8e8e8;
+  --status-bg: #e8f5e9; /* Light green background for status */
 }
 
+/* --- Base Styles --- */
+#order {
+  height: 100%;
+  background-color: var(--page-bg);
+  font-family: "PingFangSC-Regular", sans-serif; /* Default font */
+}
+
+/* --- Header --- */
 #order .divHead {
   width: 100%;
-  height: 88rem;
-  opacity: 1;
-  background: #333333;
+  height: 80rem; /* Slightly shorter header */
+  background: linear-gradient(135deg, var(--fresh-green) 0%, var(--leaf-green) 100%);
   position: relative;
+  box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3);
+  display: flex; /* Use flex for alignment */
+  align-items: center; /* Center items vertically */
+  padding: 0 15rem;
+  box-sizing: border-box;
 }
 
 #order .divHead .divTitle {
-  font-size: 18rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
+  flex-grow: 1; /* Allow title to take remaining space */
+  font-size: 19rem;
+  font-weight: 600; /* Bolder title */
   text-align: center;
-  color: #ffffff;
-  line-height: 25rem;
-  letter-spacing: 0;
-  position: absolute;
-  bottom: 13rem;
-  width: 100%;
+  color: var(--white);
+  letter-spacing: 0.5px;
+  /* Remove absolute positioning */
+  position: static;
+  line-height: normal; /* Reset line height */
+  padding-right: 25rem; /* Add padding to center considering the icon */
 }
 
 #order .divHead .divTitle i {
-  position: absolute;
-  left: 16rem;
-  top: 50%;
-  transform: translate(0, -50%);
+  /* Remove absolute positioning */
+  position: static;
+  transform: none; /* Reset transform */
+  font-size: 24rem; /* Larger icon */
+  color: var(--white);
+  cursor: pointer;
+  float: left; /* Position icon to the left */
 }
 
+/* --- Order List Body --- */
 #order .divBody {
-  margin: 10rem 12rem 10rem 12rem;
-  background: #ffffff;
-  border-radius: 6rem;
-  padding-left: 10rem;
-  padding-right: 10rem;
-  height: calc(100% - 108rem);
+  height: calc(100% - 80rem); /* Adjust height based on new header */
   overflow-y: auto;
+  padding: 15rem 12rem; /* Add padding around the list */
+  box-sizing: border-box;
+}
+
+#order .divBody .van-list {
+  padding: 0; /* Reset van-list padding if any */
+}
+
+/* --- Order Card Item --- */
+#order .divBody .van-list .van-cell {
+  background-color: var(--white);
+  border-radius: 12rem; /* More rounded corners */
+  margin-bottom: 18rem; /* Increased spacing */
+  padding: 18rem 15rem; /* Increased internal padding */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Softer shadow */
+  border: 1px solid var(--border-light);
+  position: relative; /* For potential future absolute elements if needed */
 }
 
 #order .divBody .van-list .van-cell::after {
-  border: 0;
+  border-bottom: none; /* Remove default separator */
 }
 
+/* --- Time & Status Section --- */
 #order .divBody .item .timeStatus {
-  height: 46rem;
-  line-height: 16rem;
-  font-size: 14rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
-  text-align: left;
-  color: #666666;
-  line-height: 20rem;
-  letter-spacing: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2rem dashed #efefef;
-  border-top: 1px solid #efefef;
+  margin-bottom: 18rem; /* More space below */
 }
 
-#order .divBody .item .timeStatus span:first-child {
-  color: #333333;
+#order .divBody .item .timeStatus span:first-child { /* Timestamp */
+  font-size: 13rem;
+  color: var(--text-light);
 }
 
+#order .divBody .item .timeStatus span:last-child { /* Status */
+  font-size: 13rem;
+  font-weight: 600;
+  color: var(--fresh-green);
+  padding: 4rem 10rem;
+  background-color: var(--status-bg);
+  border-radius: 15rem; /* Pill shape */
+}
+
+/* --- Dish List Section --- */
 #order .divBody .item .dishList {
-  padding-top: 10rem;
-  padding-bottom: 11rem;
+  padding: 10rem 0;
+  margin-bottom: 15rem; /* Space before summary */
+  border-top: 1px dashed #f0f0f0; /* Subtle separator */
+  border-bottom: 1px dashed #f0f0f0; /* Subtle separator */
 }
 
 #order .divBody .item .dishList .item {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
   display: flex;
   justify-content: space-between;
-  height: 20rem;
-  opacity: 1;
-  font-size: 14rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
-  text-align: left;
-  color: #666666;
-  line-height: 20rem;
-  letter-spacing: 0;
+  align-items: center;
+  padding: 8rem 0; /* Increased vertical space */
+  font-size: 15rem;
+  color: var(--text-medium);
 }
 
+/* Add a subtle "bullet" or indicator */
+#order .divBody .item .dishList .item span:first-child::before {
+  content: '· ';
+  color: var(--leaf-green);
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+
+#order .divBody .item .dishList .item span:last-child { /* Quantity */
+  color: var(--text-light);
+  font-size: 14rem;
+  font-style: italic;
+}
+
+/* --- Result / Summary Section --- */
 #order .divBody .item .result {
   display: flex;
   justify-content: flex-end;
-  height: 20rem;
-  opacity: 1;
+  align-items: flex-end; /* Align bottom */
+  text-align: right; /* Ensure text aligns right */
   font-size: 14rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
-  text-align: left;
-  color: #666666;
-  line-height: 20rem;
+  color: var(--text-medium);
+  line-height: 1.5;
 }
 
 #order .divBody .item .result .price {
-  color: #343434;
+  font-family: "DIN-Medium", Helvetica, sans-serif;
+  font-size: 22rem; /* Significantly larger price */
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-left: 10rem;
+  line-height: 1; /* Align price better */
 }
 
+#order .divBody .item .result .price::before {
+  content: '¥';
+  font-size: 16rem;
+  margin-right: 2px;
+  font-weight: normal;
+  color: var(--text-dark); /* Match price color */
+}
+
+/* --- Button Section --- */
 #order .divBody .item .btn {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 17rem;
   margin-top: 20rem;
 }
 
 #order .divBody .btn .btnAgain {
-  width: 124rem;
-  height: 36rem;
-  opacity: 1;
-  border: 1px solid #e5e4e4;
-  border-radius: 19rem;
-  opacity: 1;
-  font-size: 14rem;
-  font-family: PingFangSC, PingFangSC-Regular;
+  min-width: 110rem;
+  height: 42rem; /* Taller button */
+  padding: 0 25rem;
+  background: linear-gradient(135deg, var(--leaf-green) 0%, var(--fresh-green) 100%);
+  border: none;
+  border-radius: 21rem; /* Fully rounded */
+  font-size: 15rem; /* Larger button text */
   font-weight: 500;
   text-align: center;
-  color: #333333;
-  line-height: 36rem;
-  letter-spacing: 0;
-  position: relative;
+  color: var(--white);
+  line-height: 42rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(76, 175, 80, 0.4);
 }
 
+#order .divBody .btn .btnAgain:hover {
+  background: linear-gradient(135deg, var(--fresh-green) 0%, var(--button-green-hover) 100%);
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.5);
+  transform: translateY(-1px); /* Subtle lift */
+}
+
+#order .divBody .btn .btnAgain:active {
+  transform: scale(0.97);
+  box-shadow: 0 1px 3px rgba(76, 175, 80, 0.3);
+}
+
+
+/* --- No Data State --- */
 #order .divNoData {
   width: 100%;
-  height: calc(100% - 88rem);
+  height: calc(100% - 80rem);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 30rem;
+  box-sizing: border-box;
+}
+
+#order .divNoData .divContainer {
+  text-align: center;
 }
 
 #order .divNoData .divContainer img {
-  width: 240rem;
-  height: 129rem;
+  width: 160rem; /* Adjust size */
+  height: auto;
+  opacity: 0.5; /* Make it more subtle */
+  margin-bottom: 25rem;
 }
 
 #order .divNoData .divContainer div {
-  font-size: 24rem;
-  font-family: PingFangSC, PingFangSC-Medium;
+  font-size: 17rem;
+  color: var(--text-light);
   font-weight: 500;
-  text-align: center;
-  color: #333333;
-  line-height: 33rem;
-  height: 33rem;
-  margin-top: 20rem;
+}
+
+/* Adjust Vant Finished Text */
+.van-list__finished-text {
+  color: var(--text-light) !important;
+  font-size: 13rem !important;
+  padding: 20rem 0 !important;
 }

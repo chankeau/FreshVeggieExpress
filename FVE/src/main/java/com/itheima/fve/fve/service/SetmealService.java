@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface SetmealService extends IService<Setmeal> {
     /**
-     * 新增套餐，同时需要保存套餐和菜品关联关系
+     * 新增套餐，同时需要保存套餐和商品关联关系
      * @param setmealDto
      */
     public void saveWithDish(SetmealDto setmealDto);

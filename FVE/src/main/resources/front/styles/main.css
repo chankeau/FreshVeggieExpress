@@ -1,911 +1,406 @@
-/**
-首屏样式
-*/
 #main {
   height: 100%;
+  background-color: #f8fbf6; /* 淡绿色背景 */
 }
 
+/* 头部 - 简化，使用绿色渐变 */
 #main .divHead {
-  background: url(../images/mainBg.png);
-  background-repeat: no-repeat;
-  height: 152rem;
-  background-size: contain;
+  background: linear-gradient(to bottom, #a8e063, #56ab2f); /* 绿色渐变 */
+  height: 120rem; /* 可以调整高度 */
+  position: relative; /* 方便定位图标 */
 }
 
 #main .divHead img {
   position: absolute;
-  left: 19rem;
-  top: 41rem;
+  right: 20rem;
+  top: 30rem;
   width: 28rem;
   height: 28rem;
 }
 
+/* 店铺信息区 - 简洁白色卡片 */
 #main .divTitle {
-  width: 345rem;
-  height: 118rem;
-  opacity: 1;
+  width: calc(100% - 40rem); /* 宽度适应屏幕，留边距 */
+  height: auto; /* 高度自适应 */
   background: #ffffff;
-  border-radius: 6rem;
-  box-shadow: 0rem 2rem 5rem 0rem rgba(69, 69, 69, 0.1);
+  border-radius: 8rem; /* 轻微圆角 */
+  box-shadow: 0 3rem 8rem rgba(139, 195, 74, 0.15); /* 柔和的绿色阴影 */
   position: absolute;
   left: 50%;
-  top: 77rem;
-  transform: translate(-50%, 0);
+  top: 70rem; /* 调整与顶部的距离 */
+  transform: translateX(-50%);
   box-sizing: border-box;
-  padding: 14rem 0 0 8rem;
+  padding: 12rem 15rem;
 }
 #main .divTitle .divStatic {
   display: flex;
+  align-items: center; /* 图标和文字垂直居中 */
+  padding-bottom: 8rem; /* 与下方信息的间距 */
 }
 #main .divTitle .divStatic .logo {
-  width: 39rem;
-  height: 39rem;
-  opacity: 1;
-  background: #333333;
-  border-radius: 6rem;
-  margin-right: 10rem;
-}
-
-#main .divTitle .divStatic .divDesc .divName {
-  width: 90rem;
-  height: 25rem;
-  opacity: 1;
-  font-size: 18rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: left;
-  color: #20232a;
-  line-height: 25rem;
-}
-
-#main .divTitle .divStatic .divDesc .divSend {
-  opacity: 1;
-  font-size: 11rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
-  text-align: left;
-  color: #333333;
-  margin-bottom: 10rem;
-}
-
-#main .divTitle .divStatic .divDesc .divSend img {
-  width: 14rem;
-  height: 14rem;
-  opacity: 1;
-  vertical-align: sub;
-}
-
-#main .divTitle .divStatic .divDesc .divSend span {
+  width: 45rem;
+  height: 45rem;
+  background: none; /* 去掉背景 */
+  border-radius: 50%; /* 可以让 logo 变圆 */
   margin-right: 12rem;
 }
 
-#main .divTitle .divStatic .divDesc .divSend span:last-child {
-  margin-right: 0;
+#main .divTitle .divStatic .divDesc {
+  display: flex;
+  flex-direction: column; /* 名称和配送信息垂直排列 */
 }
 
-#main .divTitle > .divDesc {
-  opacity: 1;
+#main .divTitle .divStatic .divDesc .divName {
+  font-size: 18rem;
+  font-family: "PingFangSC", "Microsoft YaHei", sans-serif;
+  font-weight: 600; /* 加粗 */
+  color: #333333;
+  line-height: 25rem;
+  margin-bottom: 3rem; /* 名称和下方信息的间距 */
+}
+
+#main .divTitle .divStatic .divDesc .divSend {
+  font-size: 11rem;
+  font-family: PingFangSC, PingFangSC-Regular;
+  color: #757575; /* 灰色文字 */
+  line-height: 16rem;
+  display: flex;
+  flex-wrap: wrap; /* 必要时换行 */
+  gap: 8rem; /* 信息间的间距 */
+}
+
+#main .divTitle .divStatic .divDesc .divSend img {
+  width: 13rem;
+  height: 13rem;
+  vertical-align: text-bottom; /* 微调图标对齐 */
+  margin-right: 3px;
+}
+
+#main .divTitle .divStatic .divDesc .divSend span {
+  margin-right: 0; /* 移除之前的固定右边距，使用 gap */
+}
+
+/* 店铺信息描述文字 */
+#main .divTitle .divInfo {
   font-size: 12rem;
   font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
-  text-align: left;
-  color: #9b9b9b;
+  color: #666;
   line-height: 17rem;
-  margin-right: 18rem;
-  padding-top: 9rem;
-  border-top: 1rem dashed #ebebeb;
+  padding-top: 8rem;
+  border-top: 1px solid #eef3e8; /* 淡绿色分割线 */
 }
 
+
+/* 主体内容区域 */
 #main .divBody {
   display: flex;
   height: 100%;
+  padding-top: 65rem; /* 因为 .divTitle 变成绝对定位，增加 padding-top 防止内容被遮挡 */
+  box-sizing: border-box; /* 确保 padding 不会增加总高度 */
 }
 
+/* 左侧分类 */
 #main .divBody .divType {
-  background: #f6f6f6;
+  background: #f8fbf6; /* 淡绿色背景 */
+  flex-shrink: 0; /* 防止被压缩 */
 }
 
 #main .divBody .divType ul {
-  margin-top: 61rem;
+  margin-top: 10rem; /* 调整上方距离 */
   overflow-y: auto;
-  height: calc(100% - 61rem);
-  padding-bottom: 200rem;
+  height: calc(100% - 80rem); /* 重新计算高度，考虑购物车 */
+  padding-bottom: 60rem; /* 留出底部购物车空间 */
   box-sizing: border-box;
   width: 84rem;
-  opacity: 1;
 }
 
 #main .divBody .divType ul li {
-  padding: 16rem;
-  opacity: 1;
+  padding: 14rem 10rem; /* 调整内边距 */
   font-size: 13rem;
   font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
-  text-align: left;
-  color: #666666;
-  line-height: 18rem;
-  letter-spacing: 0rem;
-  word-wrap: break-word;
-  word-break: normal;
+  color: #555; /* 深灰色 */
+  line-height: 1.4;
+  border-left: 3px solid transparent; /* 添加左边框用于激活状态 */
 }
 
 #main .divBody .divType ul li.active {
-  color: #333333;
-  font-weight: 500;
+  color: #388e3c; /* 深绿色 */
   background-color: #ffffff;
-  font-family: PingFangSC, PingFangSC-Regular;
+  font-weight: 500;
+  border-left-color: #4CAF50; /* 激活时显示绿色左边框 */
 }
 
+/* 右侧菜单 */
 #main .divBody .divMenu {
   background-color: #ffffff;
   box-sizing: border-box;
-  width: 100%;
-  height: 100%;
+  width: 100%; /* 占据剩余宽度 */
+  height: 100%; /* 继承父级高度 */
+  overflow: hidden; /* 隐藏内部滚动条，让内层 div 滚动 */
 }
 
 #main .divBody .divMenu > div {
-  margin-top: 61rem;
-  overflow-y: auto;
-  height: calc(100% - 61rem);
-  padding-bottom: 200rem;
+  margin-top: 10rem;
+  overflow-y: auto; /* 内容滚动 */
+  height: calc(100% - 80rem); /* 调整高度，留出购物车 */
+  padding-bottom: 60rem; /* 留出底部购物车空间 */
   box-sizing: border-box;
 }
 
+/* 商品项 */
 #main .divBody .divMenu .divItem {
-  margin: 10rem 15rem 20rem 14rem;
+  margin: 15rem 15rem 25rem 14rem;
   display: flex;
+  border-bottom: 1px solid #f0f3f0; /* 商品间浅分割线 */
+  padding-bottom: 15rem;
 }
 
 #main .divBody .divMenu .divItem .el-image {
-  width: 86rem;
-  height: 86rem;
-  margin-right: 14rem;
+  width: 75rem; /* 调整图片大小 */
+  height: 75rem;
+  margin-right: 12rem;
+  flex-shrink: 0;
 }
 
 #main .divBody .divMenu .divItem .el-image img {
-  width: 86rem;
-  height: 86rem;
+  width: 100%;
+  height: 100%;
   border-radius: 5rem;
+  object-fit: cover; /* 保证图片不变形 */
 }
 
 #main .divBody .divMenu .divItem > div {
   position: relative;
+  flex-grow: 1; /* 占据剩余空间 */
+  display: flex;
+  flex-direction: column; /* 内部元素垂直排列 */
 }
 
 #main .divBody .divMenu .divItem .divName {
-  height: 22rem;
-  opacity: 1;
-  font-size: 16rem;
-  font-family: PingFangSC, PingFangSC-Semibold;
-  font-weight: 600;
-  text-align: left;
+  font-size: 15rem; /* 稍微调整 */
+  font-family: PingFangSC, PingFangSC-Medium; /* 中等字重 */
+  font-weight: 500;
   color: #333333;
-  line-height: 22rem;
-  letter-spacing: 0;
-  margin-bottom: 5rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 175rem;
-}
-
-#main .divBody .divMenu .divItem .divDesc {
-  height: 16rem;
-  opacity: 1;
-  font-size: 12rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
-  text-align: left;
-  color: #666666;
-  line-height: 16rem;
-  letter-spacing: 0rem;
+  line-height: 20rem;
   margin-bottom: 4rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 144rem;
+  max-width: 190rem; /* 限制最大宽度 */
 }
 
+#main .divBody .divMenu .divItem .divDesc { /* 描述 */
+  font-size: 12rem;
+  color: #888; /* 浅灰色 */
+  line-height: 16rem;
+  margin-bottom: 4rem;
+  /* 最多显示两行 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* 最多显示1行 */
+  -webkit-box-orient: vertical;
+  max-width: 190rem;
+}
+#main .divBody .divMenu .divItem .divOrigin { /* 产地 */
+  font-size: 11rem;
+  color: #aaa;
+  line-height: 15rem;
+  margin-bottom: 6rem;
+}
+
+
 #main .divBody .divMenu .divItem .divBottom {
-  font-size: 15rem;
-  font-family: DIN, DIN-Medium;
-  font-weight: 500;
-  text-align: left;
-  color: #e94e3c;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  color: #e64a19;
   line-height: 20rem;
   letter-spacing: 0rem;
+  margin-top: auto;
+  display: flex;
 }
 
 #main .divBody .divMenu .divItem .divBottom span:first-child {
   font-size: 12rem;
+  margin-right: 1px;
 }
 
-#main .divBody .divMenu .divItem .divBottom span:last-child {
-  font-size: 15rem;
+#main .divBody .divMenu .divItem .divBottom span:last-of-type { /* 价格数字 */
+  font-size: 16rem; /* 价格字号加大 */
 }
-
-#main .divBody .divMenu .divItem .divNum {
-  display: flex;
-  position: absolute;
-  right: 12rem;
-  bottom: 0;
-}
-
-#main .divBody .divMenu .divItem .divNum .divDishNum {
-  font-size: 15rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: center;
-  color: #333333;
-  line-height: 36rem;
-  letter-spacing: 0;
-  width: auto;
-}
-
-#main .divBody .divMenu .divItem .divNum .divTypes {
-  width: 64rem;
-  height: 24rem;
-  opacity: 1;
-  background: #adc8a2;
-  border-radius: 12rem;
+#main .divBody .divMenu .divItem .divBottom .unit { /* 单位 */
   font-size: 12rem;
-  font-family: PingFangSC, PingFangSC-Regular;
+  color: #999; /* 单位颜色变浅 */
+  font-weight: normal;
+  margin-left: 3px;
+}
+
+
+#main .divBody .divMenu .divItem .divNum { /* 加减按钮区域 */
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  position: absolute;
+  right: 0;      /* 定位到右下角 */
+  bottom: 0;     /* 定位到右下角 */
+}
+
+#main .divBody .divMenu .divItem .divNum .divDishNum { /* 中间的数量 */
+  font-size: 15rem;
   font-weight: 500;
+  color: #555;
+  line-height: 28rem; /* 调整行高匹配按钮大小 */
+  min-width: 20rem;   /* 给数字留出最小宽度 */
   text-align: center;
-  color: #333333;
-  line-height: 24rem;
-  letter-spacing: 0;
+  margin: 0 4px;      /* 调整与按钮的间距 */
 }
 
-#main .divBody .divMenu .divItem .divNum img {
-  width: 36rem;
-  height: 36rem;
+
+#main .divBody .divMenu .divItem .divNum img { /* 加减按钮图标 */
+  width: 26rem; /* 按钮图标变小 */
+  height: 26rem;
+  cursor: pointer; /* 添加手型光标 */
 }
 
+/* 底部购物车 */
 #main .divCart {
-  width: 345rem;
-  height: 44rem;
-  opacity: 1;
-  background: #000000;
-  border-radius: 25rem;
-  box-shadow: 0rem 3rem 5rem 0rem rgba(0, 0, 0, 0.25);
+  width: calc(100% - 40rem); /* 宽度调整 */
+  height: 50rem;  /* 高度调整 */
+  background: #404040; /* 深灰色背景 */
+  border-radius: 25rem; /* 胶囊形状 */
+  box-shadow: 0 3rem 8rem rgba(0, 0, 0, 0.2);
   margin: 0 auto;
-  bottom: 24rem;
+  bottom: 15rem;  /* 离底部距离 */
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 3000;
+  display: flex; /* 使用 flex 布局内部元素 */
+  align-items: center; /* 垂直居中 */
+  padding: 0 5rem 0 70rem; /* 调整内边距，给购物车图标留位 */
+  box-sizing: border-box;
 }
 
 #main .divCart .imgCartActive {
-  background-image: url("./../images/cart_active.png");
+  background-image: url("./../images/bag_green.png"); /* 新购物车图标 dd*/
 }
 
 #main .divCart .imgCart {
-  background-image: url("./../images/cart.png");
+  background-image: url("./../images/bag_green.png"); /* 新购物车图标 */
 }
 
-#main .divCart > div:first-child {
-  width: 60rem;
-  height: 60rem;
+#main .divCart > div:first-child { /* 购物车图标 */
+  width: 56rem;
+  height: 56rem;
   position: absolute;
-  left: 11rem;
-  bottom: 0;
-  background-size: 60rem 60rem;
+  left: 10rem;
+  bottom: 5rem; /* 稍微向上移动 */
+  background-size: contain; /* 图标适应容器 */
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
 }
 
-#main .divCart .divNum {
-  font-size: 12rem;
-  font-family: DIN, DIN-Medium;
-  font-weight: 500;
-  text-align: left;
-  color: #ffffff;
-  letter-spacing: 0rem;
-  position: absolute;
-  left: 92rem;
-  top: 10rem;
-}
-
-#main .divCart .divNum span:last-child {
-  font-size: 20rem;
-}
-
-#main .divCart > div:last-child {
-  width: 102rem;
-  height: 36rem;
-  opacity: 1;
-  border-radius: 18rem;
-  font-size: 15rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: center;
-  line-height: 36rem;
-  position: absolute;
-  right: 5rem;
-  top: 4rem;
-}
-
-#main .divCart .btnSubmit {
-  color: white;
-  background: #d8d8d8;
-}
-#main .divCart .btnSubmitActive {
-  color: #333333;
-  background: #adc8a2;
-}
-
-#main .divCart .divGoodsNum {
+#main .divCart .divGoodsNum { /* 商品数量角标 */
   width: 18rem;
   height: 18rem;
-  opacity: 1;
-  background: #e94e3c;
+  background: #f44336; /* 红色角标 */
   border-radius: 50%;
   text-align: center;
-  font-size: 12rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
+  font-size: 11rem; /* 字号减小 */
   color: #ffffff;
   line-height: 18rem;
   position: absolute;
-  left: 50rem;
-  top: -5rem;
+  left: 55rem; /* 调整位置 */
+  top: -3rem;  /* 调整位置 */
+  border: 1px solid white; /* 加个白边 */
 }
 
-#main .divCart .moreGoods {
-  width: 25rem;
-  height: 25rem;
-  line-height: 25rem;
+#main .divCart .moreGoods { /* 99+ 样式 */
+  width: auto; /* 宽度自适应 */
+  height: 18rem;
+  padding: 0 5px;
+  line-height: 18rem;
+  border-radius: 9rem;
 }
 
+/* 总价区域 */
+#main .divCart .divNum {
+  font-weight: 500;
+  color: #ffffff;
+  position: static; /* 移除绝对定位 */
+  flex-grow: 1;     /* 占据剩余空间 */
+  text-align: left; /* 价格靠左 */
+  line-height: normal; /* 移除固定行高 */
+}
+
+#main .divCart .divNum span:first-child { /* '￥' */
+  font-size: 14rem;
+  margin-right: 2px;
+}
+#main .divCart .divNum span:last-of-type { /* 金额 */
+  font-size: 18rem;
+  font-weight: bold;
+}
+
+#main .divCart .divPrice{ /* 隐藏原来的价格占位 */
+  display: none;
+}
+
+
+/* 去结算按钮 */
+#main .divCart > div:last-of-type { /* 选择结算按钮 */
+  width: 100rem; /* 调整宽度 */
+  height: 40rem; /* 调整高度 */
+  border-radius: 20rem; /* 胶囊按钮 */
+  font-size: 15rem;
+  font-weight: 500;
+  text-align: center;
+  line-height: 40rem;
+  position: static; /* 移除绝对定位 */
+  transform: none; /* 移除 transform */
+  flex-shrink: 0; /* 防止被压缩 */
+  margin-left: 10rem; /* 与价格的间距 */
+}
+
+/* 结算按钮样式 */
+#main .divCart .btnSubmit { /* 购物车为空时 */
+  color: #999;
+  background: #666; /* 深灰色背景 */
+  cursor: not-allowed;
+}
+#main .divCart .btnSubmitActive { /* 购物车有商品时 */
+  color: white;
+  background: #4CAF50; /* 主题绿色 */
+  cursor: pointer;
+}
+#main .divCart .btnSubmitActive:active {
+  background: #388e3c; /* 按下时颜色变深 */
+}
+
+/* 底部白色遮罩层移除 (如果不再需要) */
 #main .divLayer {
-  position: absolute;
-  height: 68rem;
-  width: 100%;
-  bottom: 0;
-  display: flex;
+  display: none;
 }
 
-#main .divLayer .divLayerLeft {
-  background-color: #f6f6f6;
-  opacity: 0.5;
-  width: 84rem;
-  height: 100%;
-}
 
-#main .divLayer .divLayerRight {
-  background-color: white;
-  opacity: 0.5;
-  width: calc(100% - 84rem);
-  height: 100%;
+/* 购物车弹出层 */
+#main .dialogCart .divCartTitle { /* 标题行 */
+  border-bottom: 1px solid #eef3e8; /* 淡绿色底线 */
 }
-
-#main .dialogFlavor {
-  opacity: 1;
-  background: #ffffff;
-  border-radius: 10rem;
-}
-
-#main .dialogFlavor .dialogTitle {
-  margin-top: 26rem;
-  margin-bottom: 14rem;
-  font-size: 18rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  color: #333333;
-  letter-spacing: 0;
-  text-align: center;
-}
-
-#main .dialogFlavor .divContent {
-  margin-left: 15rem;
-  margin-right: 15rem;
-}
-
-#main .dialogFlavor .divContent .divFlavorTitle {
-  height: 20rem;
-  opacity: 1;
-  font-size: 14rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
-  text-align: left;
-  color: #666666;
-  line-height: 20rem;
-  letter-spacing: 0;
-  margin-left: 5rem;
-  margin-bottom: 10rem;
-  margin-top: 10rem;
-}
-
-#main .dialogFlavor .divContent span {
-  display: inline-block;
-  height: 30rem;
-  opacity: 1;
-  background: #ffffff;
-  border: 1rem solid #adc8a2;
-  border-radius: 7rem;
-  line-height: 30rem;
-  padding-left: 13rem;
-  padding-right: 13rem;
-  margin: 0 5rem 10rem 5rem;
-  font-size: 14rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
-  text-align: center;
-  color: #333333;
-}
-
-#main .dialogFlavor .divContent .spanActive {
-  background: #adc8a2;
-  font-weight: 500;
-}
-
-#main .dialogFlavor .divBottom {
-  margin-top: 20rem;
-  margin-bottom: 19rem;
-  margin-left: 20rem;
-  display: flex;
-  position: relative;
-}
-
-#main .dialogFlavor .divBottom div:first-child {
-  height: 30rem;
-  opacity: 1;
-  font-size: 20rem;
-  font-family: DIN, DIN-Medium;
-  font-weight: 500;
-  text-align: left;
-  color: #e94e3c;
-  line-height: 30rem;
-  letter-spacing: 0;
-}
-
-#main .dialogFlavor .divBottom div span {
-  font-size: 14rem;
-}
-
-#main .dialogFlavor .divBottom div:last-child {
-  width: 100rem;
-  height: 30rem;
-  opacity: 1;
-  background: #adc8a2;
-  border-radius: 15rem;
-  text-align: center;
-  line-height: 30rem;
-  position: absolute;
-  right: 20rem;
-  font-size: 14rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: center;
-  color: #333333;
-}
-
-#main .dialogFlavor .divFlavorClose {
-  position: absolute;
-  bottom: -70rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-}
-
-#main .dialogFlavor .divFlavorClose img {
-  width: 44rem;
-  height: 44rem;
-}
-
-#main .dialogCart {
-  background: linear-gradient(180deg, #ffffff 0%, #ffffff 81%);
-  border-radius: 12px 12px 0px 0px;
-}
-
-#main .dialogCart .divCartTitle {
-  height: 59rem;
-  display: flex;
-  line-height: 60rem;
-  position: relative;
-  margin-left: 15rem;
-  margin-right: 10rem;
-  border-bottom: 1px solid #efefef;
-}
-
 #main .dialogCart .divCartTitle .title {
-  font-size: 20rem;
-  font-family: PingFangSC, PingFangSC-Semibold;
   font-weight: 600;
-  text-align: left;
-  color: #333333;
 }
-#main .dialogCart .divCartTitle i {
-  margin-right: 3rem;
-  font-size: 15rem;
-  vertical-align: middle;
+#main .dialogCart .divCartTitle .clear { /* 清空按钮 */
+  color: #aaa;
 }
-
-#main .dialogCart .divCartTitle .clear {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translate(0, -50%);
-  color: #999999;
-  font-size: 14px;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
-  text-align: left;
-}
-
-#main .dialogCart .divCartItem {
-  height: 108rem;
-  margin-left: 15rem;
-  margin-right: 10rem;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-#main .dialogCart .divCartContent {
-  height: calc(100% - 130rem);
-  overflow-y: auto;
-}
-
-#main .dialogCart .divCartContent .el-image {
-  width: 64rem;
-  height: 64rem;
-  opacity: 1;
-  margin-right: 10rem;
-}
-
-#main .dialogCart .divCartContent .el-image img {
-  width: 64rem;
-  height: 64rem;
-}
-
-#main .dialogCart .divCartContent .divDesc .name {
-  height: 22rem;
-  opacity: 1;
-  font-size: 16rem;
-  font-family: PingFangSC, PingFangSC-Semibold;
-  font-weight: 600;
-  text-align: left;
-  color: #333333;
-  line-height: 22rem;
-  letter-spacing: 0;
-  margin-bottom: 17rem;
-}
-
-#main .dialogCart .divCartContent .divDesc .price {
-  font-size: 18rem;
-  font-family: DIN, DIN-Medium;
+#main .dialogCart .divCartContent .divDesc .name { /* 商品名 */
   font-weight: 500;
-  text-align: left;
-  color: #e94e3c;
 }
-
-#main .dialogCart .divCartContent .divDesc .price .spanMoney {
-  font-size: 12rem;
+#main .dialogCart .divCartContent .divDesc .price { /* 价格 */
+  color: #e64a19; /* 橙红色价格 */
+  font-weight: bold;
 }
-
-#main .dialogCart .divCartContent .divCartItem .divNum {
-  position: absolute;
-  right: 0;
-  bottom: 10rem;
-  display: flex;
-  line-height: 36rem;
-  height: 36rem;
-}
-
-#main .dialogCart .divCartContent .divCartItem .divNum img {
-  width: 36rem;
-  height: 36rem;
-}
-
-#main .dialogCart .divCartContent .divCartItem .divSplit {
-  width: calc(100% - 64rem);
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  height: 1px;
-  opacity: 1;
-  background-color: #efefef;
-}
-
-#main .dialogCart .divCartContent .divCartItem:last-child .divSplit {
-  height: 0;
-}
-
-#main .detailsDialog {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-#main .detailsDialog .divContainer {
-  padding: 20rem 20rem 0 20rem;
-  overflow: auto;
-  max-height: 50vh;
-  overflow-y: auto;
-}
-
-#main .detailsDialog .el-image {
-  width: 100%;
-  height: 100%;
-}
-
-#main .detailsDialog .el-image img {
-  width: 100%;
-  height: 100%;
-}
-
-#main .detailsDialog .title {
-  height: 28rem;
-  opacity: 1;
-  font-size: 20rem;
-  font-family: PingFangSC, PingFangSC-Semibold;
-  font-weight: 600;
-  color: #333333;
-  line-height: 28rem;
-  letter-spacing: 0;
-  margin-top: 18rem;
-  margin-bottom: 11rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%;
-}
-
-#main .detailsDialog .content {
-  opacity: 1;
-  font-size: 14rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
-  text-align: justify;
-  color: #333333;
-  line-height: 24rem;
-}
-
-#main .detailsDialog .divNum {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 23rem;
-  margin-bottom: 20rem;
-  padding-left: 20rem;
-  padding-right: 20rem;
-}
-
-#main .detailsDialog .divNum .left {
-  font-size: 20rem;
-  font-family: DIN, DIN-Medium;
-  font-weight: 500;
-  text-align: left;
-  color: #e94e3c;
-  line-height: 36rem;
-  letter-spacing: 0rem;
-}
-
-#main .detailsDialog .divNum .left span:first-child {
-  font-size: 12rem;
-}
-
-#main .detailsDialog .divNum .right {
-  display: flex;
-}
-
-#main .detailsDialog .divNum .divDishNum {
-  font-size: 15rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: center;
-  color: #333333;
-  line-height: 36rem;
-  letter-spacing: 0;
-  width: auto;
-}
-
-#main .detailsDialog .divNum .divTypes {
-  width: 64rem;
+#main .dialogCart .divCartContent .divCartItem .divNum img { /* 加减 */
+  width: 24rem;
   height: 24rem;
-  opacity: 1;
-  background: #adc8a2;
-  border-radius: 12rem;
-  font-size: 12rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: center;
-  color: #333333;
-  line-height: 24rem;
-  letter-spacing: 0;
-}
-
-#main .detailsDialog .divNum .divSubtract,
-.divAdd {
-  height: 36rem;
-}
-
-#main .detailsDialog .divNum img {
-  width: 36rem;
-  height: 36rem;
-}
-
-#main .detailsDialog .detailsDialogClose {
-  position: absolute;
-  bottom: -70rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-}
-
-#main .detailsDialog .detailsDialogClose img {
-  width: 44rem;
-  height: 44rem;
-}
-
-#main .setMealDetailsDialog {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-#main .setMealDetailsDialog .divContainer {
-  padding: 20rem 20rem 0 20rem;
-  overflow: auto;
-  max-height: 50vh;
-  overflow-y: auto;
-}
-
-#main .setMealDetailsDialog .el-image {
-  width: 100%;
-  height: 100%;
-}
-
-#main .setMealDetailsDialog .el-image img {
-  width: 100%;
-  height: 100%;
-}
-
-#main .setMealDetailsDialog .divSubTitle {
-  text-align: left;
-  margin-top: 16rem;
-  margin-bottom: 6rem;
-  height: 25rem;
-  opacity: 1;
-  font-size: 18rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: left;
-  color: #333333;
-  line-height: 25rem;
-  letter-spacing: 0px;
-  position: relative;
-}
-
-#main .setMealDetailsDialog .divContainer .item .divSubTitle .divPrice {
-  position: absolute;
-  right: 0;
-  top: 0;
-  font-size: 18rem;
-  font-family: DIN, DIN-Medium;
-  font-weight: 500;
-  text-align: left;
-  color: #e94e3c;
-  line-height: 25rem;
-  letter-spacing: 0rem;
-}
-
-#main
-  .setMealDetailsDialog
-  .divContainer
-  .item
-  .divSubTitle
-  .divPrice
-  span:first-child {
-  font-size: 12rem;
-}
-
-#main .setMealDetailsDialog .title {
-  height: 28rem;
-  opacity: 1;
-  font-size: 20rem;
-  font-family: PingFangSC, PingFangSC-Semibold;
-  font-weight: 600;
-  color: #333333;
-  line-height: 28rem;
-  letter-spacing: 0;
-  margin-top: 18rem;
-  margin-bottom: 11rem;
-}
-
-#main .setMealDetailsDialog .content {
-  opacity: 1;
-  font-size: 14rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
-  text-align: justify;
-  color: #333333;
-  line-height: 24rem;
-}
-
-#main .setMealDetailsDialog .divNum {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 23rem;
-  padding-bottom: 15rem;
-  padding-left: 20rem;
-  padding-right: 20rem;
-}
-
-#main .setMealDetailsDialog .divNum .left {
-  font-size: 20rem;
-  font-family: DIN, DIN-Medium;
-  font-weight: 500;
-  text-align: left;
-  color: #e94e3c;
-  line-height: 36rem;
-  letter-spacing: 0rem;
-}
-
-#main .setMealDetailsDialog .divNum .left span:first-child {
-  font-size: 12rem;
-}
-
-#main .setMealDetailsDialog .divNum .right {
-  display: flex;
-}
-
-#main .setMealDetailsDialog .divNum .divDishNum {
-  font-size: 15rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: center;
-  color: #333333;
-  line-height: 36rem;
-  letter-spacing: 0;
-  width: auto;
-}
-
-#main .setMealDetailsDialog .divNum .divTypes {
-  width: 64rem;
-  height: 24rem;
-  opacity: 1;
-  background: #adc8a2;
-  border-radius: 12rem;
-  font-size: 12rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: center;
-  color: #333333;
-  line-height: 24rem;
-  letter-spacing: 0;
-}
-
-#main .setMealDetailsDialog .divNum .divSubtract,
-.divAdd {
-  height: 36rem;
-}
-
-#main .setMealDetailsDialog .divNum img {
-  width: 36rem;
-  height: 36rem;
-}
-
-#main .setMealDetailsDialog .divNum .right .addCart {
-  width: 100rem;
-  height: 30rem;
-  opacity: 1;
-  background: #adc8a2;
-  border-radius: 15rem;
-  font-size: 14rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: center;
-  color: #333333;
-  line-height: 30rem;
-}
-
-#main .setMealDetailsDialog .detailsDialogClose {
-  position: absolute;
-  bottom: -70rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-}
-
-#main .setMealDetailsDialog .detailsDialogClose img {
-  width: 44rem;
-  height: 44rem;
 }

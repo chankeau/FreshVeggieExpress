@@ -1,96 +1,182 @@
-#login .divHead {
-  opacity: 1;
-  background: #333333;
-  height: 88rem;
-  width: 100%;
-  font-size: 18rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: center;
-  color: #ffffff;
-  line-height: 88rem;
+body {
+  background-color: #f8fbf6;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-#login .divContainer {
-  width: 356rem;
-  height: 128rem;
-  opacity: 1;
+.logo-img {
+  display: block;
+  width: 90rem;
+  margin: 45rem auto 30rem auto;
+}
+
+#login {
+  padding: 0 30rem 30rem 30rem;
+}
+
+.input-group {
+  margin-bottom: 18rem;
   background: #ffffff;
-  border-radius: 6rem;
-  margin: 0 auto;
-  margin-top: 10rem;
-  position: relative;
+  border-radius: 12rem;
+  border: 1px solid #dcedc8;
+  overflow: hidden;
+  box-shadow: 0 2rem 8rem rgba(139, 195, 74, 0.1);
 }
 
-#login .divContainer input {
-  border: 0;
-  height: 63rem;
+#login .el-input__inner {
+  height: 50rem;
+  line-height: 50rem;
+  border: none !important;
+  background-color: transparent !important;
+  font-size: 16rem;
+  padding-left: 20rem;
+  border-radius: 12rem;
 }
 
-#login .divContainer .divSplit {
-  height: 1px;
-  background-color: #efefef;
-  border: 0;
-  margin-left: 10rem;
-  margin-right: 10rem;
+.code-container {
+
 }
 
-#login .divContainer span {
-  position: absolute;
-  right: 20rem;
-  top: 20rem;
-  cursor: pointer;
-  opacity: 1;
+.code-input {
+
+}
+.code-input .el-input__inner {
+  border-radius: 12rem !important;
+}
+
+.agreement-code-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -8rem;
+  margin-bottom: 15rem;
+  min-height: 24rem;
+}
+
+/* 左侧：协议样式 (不需要 justify-content) */
+.divAgreement {
+
+  margin: 0;
+
   font-size: 12rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
-  text-align: left;
-  color: #adc8a2;
-  letter-spacing: 0px;
+  color: #757575;
+}
+.divAgreement input[type="checkbox"] {
+  accent-color: #0277bd;
+  width: 14rem;
+  height: 14rem;
+  margin-right: 6rem;
+  cursor: pointer;
+}
+.divAgreement label {
+  cursor: pointer;
+}
+.divAgreement a {
+  color: #0277bd;
+  text-decoration: none;
+  margin: 0 2px;
+}
+.divAgreement a:hover {
+  text-decoration: underline;
 }
 
-#login .divMsg {
-  width: 168px;
-  height: 17px;
-  opacity: 1;
-  font-size: 12px;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
+
+.get-code-btn {
+
+  display: inline-block;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  font-size: 13rem;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* 错误消息 (移出这一行) */
+.divMsg {
+  width: 100%;
+  font-size: 12rem;
+  color: #d9534f;
   text-align: center;
-  color: #e94e3c;
-  line-height: 17px;
-  margin-left: 26rem;
-  margin-top: 10rem;
+  /* 调整间距，现在位于协议按钮行之后 */
+  margin-top: -5rem; /* 可以调整与上一行的距离 */
+  margin-bottom: 10rem;
+  min-height: 15rem;
 }
 
-#login .btnSubmit {
-  width: 356rem;
-  height: 40rem;
-  margin: 20rem 10rem 0 10rem;
-  border-radius: 20px;
-  border: 0;
 
-  font-size: 15rem;
-  font-family: PingFangSC, PingFangSC-Regular;
+.button-row {
+  display: flex;
+  gap: 15rem;
+  margin-top: 20rem;
+}
+
+
+.button-row .el-button {
+  flex-grow: 1;
+  height: 46rem;
+  border-radius: 23rem;
+  font-size: 16rem;
   font-weight: 500;
   text-align: center;
+  transition: background 0.3s ease, opacity 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-#login .btnNoPhone {
-  color: #666666;
-  background: #d8d8d8;
+
+.login-btn {
+  background: linear-gradient(to right, #66bb6a, #4caf50);
+  color: white;
+  cursor: pointer;}
+
+
+.register-btn {
+  background-color: #ffffff;
+  border: 1px solid #4caf50;
+  color: #4caf50;
+  cursor: pointer;
 }
 
-#login .btnNoPhone:active {
-  background: #afafaf;
+.register-btn:hover {
+  background-color: #f1f8e9;
+  border-color: #388e3c;
+  color: #388e3c;
+}
+.register-btn:active {
+  background-color: #e8f5e9;
+  border-color: #2e7d32;
+  color: #2e7d32;
 }
 
-#login .btnPhone {
-  background: #adc8a2;
-  color: #333333;
+.button-row .el-button.is-disabled {
+
 }
 
-#login .btnPhone:active {
-  background: rgba(255, 142, 0, 1);
-  color: #333333;
+.btnSubmit {
+  height: 46rem;
+  border-radius: 23rem;
+  font-size: 16rem;
+  font-weight: 500;
+  text-align: center;
+  border: none;
+  transition: background 0.3s ease, opacity 0.3s ease;
+}
+
+
+.btnCanLogin {
+  background: linear-gradient(to right, #66bb6a, #4caf50);
+  color: white;
+  cursor: pointer;
+}
+.btnCanLogin:active {
+  background: linear-gradient(to right, #5aaa5f, #43a047);
+}
+
+.btnDisabled {
+  background: #a5d6a7;
+  color: #e8f5e9;
+  opacity: 0.7;
+  cursor: not-allowed;
 }

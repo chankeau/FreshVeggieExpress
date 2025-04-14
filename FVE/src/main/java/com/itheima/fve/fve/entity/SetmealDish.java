@@ -29,7 +29,7 @@ public class SetmealDish implements Serializable {
     private Long dishId;
 
 
-    //产品名称 （冗余字段）
+    //产品名称
     private String name;
 
     //产品原价
@@ -64,4 +64,5 @@ public class SetmealDish implements Serializable {
     @TableLogic
     @TableField(select = false)
     private Integer isDeleted;
+
 }

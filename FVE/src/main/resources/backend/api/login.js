@@ -12,3 +12,4 @@ function logoutApi(){
     'method': 'post',
   })
 }
+

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no,minimal-ui">
-    <title>蔬鲜第</title>
+    <title>蔬鲜递</title>
     <link rel="icon" href="./../images/favico.ico">
     <!--element-ui的样式-->
     <link rel="stylesheet" href="../../backend/plugins/element-ui/index.css" />
@@ -33,32 +33,32 @@
             <div class="divLinks">
                 <div class="item" @click="toAddressPage">
                     <img src="./../images/locations.png"/>
-                    <span>地址管理</span>
+                    <p style="display: block">地址管理</p>
                     <i class="el-icon-arrow-right"></i>
                 </div>
                 <div class="divSplit"></div>
                 <div class="item" @click="toOrderPage">
                     <img src="./../images/orders.png"/>
-                    <span>历史订单</span>
+                    <p>历史订单</p>
                     <i class="el-icon-arrow-right"></i>
                 </div>
             </div>
             <div class="divOrders" v-if="order[0]">
                 <div class="title">最新订单</div>
                 <div class="timeStatus">
-                    <span>{{order[0].orderTime}}</span>
-                    <span>{{getStatus(order[0].status)}}</span>
+                    <p>{{order[0].orderTime}}</p>
+                    <p>{{getStatus(order[0].status)}}</p>
                     <!-- <span>正在派送</span> -->
                 </div>
                 <div class="dishList">
                     <div v-for="(item,index) in order[0].orderDetails" :key="index" class="item">
-                        <span>{{item.name}}</span>
-                        <span>x{{item.number}}</span>
+                        <p>{{item.name}}</p>
+                        <p>x{{item.number}}</p>
                     </div>
                 </div>
                 <div class="result">
-                    <span>共{{order[0].sumNum}} 件商品,实付</span>
-                    <span class="price">￥{{order[0].amount}}</span>
+                    <p>共{{order[0].sumNum}} 件商品,实付</p>
+                    <p class="price">{{order[0].amount}}</p>
                 </div>
                 <div class="btn" v-if="order[0].status === 4">
                     <div class="btnAgain" @click="addOrderAgain">再来一单</div>
@@ -88,7 +88,7 @@
             data(){
                 return {
                     form:{
-                        phone:'',
+                        email: '',
                         code:''
                     },
                     msgFlag:false,
@@ -96,11 +96,11 @@
                         orderTime:'',//下单时间
                         status:undefined,//订单状态 1已结账，2未结账，3已退单，4已完成，5已取消
                         orderDetails:[{
-                            name:'',//菜品名称
+                            name:'',//商品名称
                             number:undefined,//数量
                         }],//明细
                         amount:undefined,//实收金额
-                        sumNum:0,//菜品总数
+                        sumNum:0,//商品总数
                     }],
                 }
             },
@@ -138,7 +138,7 @@
                         if(this.order && this.order[0].orderDetails){
                             let number = 0
                             this.order[0].orderDetails.forEach(item=>{
-                                number += item.number
+                                number += item.quantity
                             })
                             this.order[0].sumNum = number
                         }

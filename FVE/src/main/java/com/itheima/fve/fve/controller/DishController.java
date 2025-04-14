@@ -35,14 +35,14 @@ public class DishController {
 
 
     /**
-     * 新增菜品
+     * 新增商品
      *
      * @param dishDto
      * @return
      */
     @PostMapping
     public R<String> save(@RequestBody DishDto dishDto) {
-        log.info("接收到新增菜品数据：{}", dishDto);
+        log.info("接收到新增商品数据：{}", dishDto);
         try {
             dishService.saveDish(dishDto);
 
@@ -51,15 +51,15 @@ public class DishController {
 //            redisTemplate.delete(key);
 //            log.info("清理了可能的Redis缓存: {}", key);
 
-            return R.success("新增菜品成功");
+            return R.success("新增商品成功");
         } catch (Exception e) {
-            log.error("新增菜品失败", e);
-            return R.error("新增菜品失败：" + e.getMessage());
+            log.error("新增商品失败", e);
+            return R.error("新增商品失败：" + e.getMessage());
         }
     }
 
     /**
-     * 菜品信息分页查询
+     * 商品信息分页查询
      *
      * @param page
      * @param pageSize
@@ -68,7 +68,7 @@ public class DishController {
      */
     @GetMapping("/page")
     public R<Page<DishDto>> page(int page, int pageSize, String name) {
-        log.info("菜品分页查询: page={}, pageSize={}, name={}", page, pageSize, name);
+        log.info("商品分页查询: page={}, pageSize={}, name={}", page, pageSize, name);
 
         Page<Dish> pageInfo = new Page<>(page, pageSize);
         Page<DishDto> dishDtoPage = new Page<>(page, pageSize);
@@ -104,32 +104,32 @@ public class DishController {
     }
 
     /**
-     * 根据id查询菜品信息 (已移除口味处理)
+     * 根据id查询商品信息 (已移除口味处理)
      *
-     * @param id 菜品ID
+     * @param id 商品ID
      * @return
      */
     @GetMapping("/{id}")
     public R<DishDto> get(@PathVariable Long id) {
-        log.info("根据ID查询菜品信息: {}", id);
+        log.info("根据ID查询商品信息: {}", id);
         // 调用 Service 层中不含口味逻辑的查询方法
         DishDto dishDto = dishService.getDishDtoById(id); // <--- 修改点
         if (dishDto == null) {
-            return R.error("未找到对应菜品");
+            return R.error("未找到对应商品");
         }
         return R.success(dishDto);
     }
 
     /**
-     * 更新菜品 (已移除口味处理)
+     * 更新商品 (已移除口味处理)
      * @param dishDto
      * @return
      */
     @PutMapping
     public R<String> update(@RequestBody DishDto dishDto) {
-        log.info("接收到更新菜品数据：{}", dishDto);
+        log.info("接收到更新商品数据：{}", dishDto);
         if (dishDto.getId() == null) {
-            return R.error("更新失败，缺少菜品ID");
+            return R.error("更新失败，缺少商品ID");
         }
         try {
             // 调用 Service 层中不含口味逻辑的更新方法
@@ -143,17 +143,17 @@ public class DishController {
             // Set<String> keys = redisTemplate.keys("dish_*");
             // if (keys != null && !keys.isEmpty()) { redisTemplate.delete(keys); }
 
-            return R.success("更新菜品成功");
+            return R.success("更新商品成功");
         } catch (Exception e) {
-            log.error("更新菜品失败", e);
-            return R.error("更新菜品失败：" + e.getMessage());
+            log.error("更新商品失败", e);
+            return R.error("更新商品失败：" + e.getMessage());
         }
     }
 
     /**
-     * 对菜品批量或单个进行停售或启售 (逻辑不变)
+     * 对商品批量或单个进行停售或启售 (逻辑不变)
      * @param status 路径变量，0停售，1启售
-     * @param ids    请求参数，菜品ID列表
+     * @param ids    请求参数，商品ID列表
      * @return
      */
     @PostMapping("/status/{status}")
@@ -162,7 +162,7 @@ public class DishController {
             return R.error("无效的状态值");
         }
         if (ids == null || ids.isEmpty()) {
-            return R.error("请选择需要修改状态的菜品");
+            return R.error("请选择需要修改状态的商品");
         }
         log.info("批量修改售卖状态 Status: {}, IDs: {}", status, ids);
         try {
@@ -184,53 +184,53 @@ public class DishController {
     }
 
     /**
-     * 菜品批量删除和单个删除 (已移除口味处理)
-     * @param ids 请求参数，菜品ID列表
+     * 商品批量删除和单个删除 (已移除口味处理)
+     * @param ids 请求参数，商品ID列表
      * @return
      */
     @DeleteMapping
     public R<String> delete(@RequestParam("ids") List<Long> ids) {
         if (ids == null || ids.isEmpty()) {
-            return R.error("请选择需要删除的菜品");
+            return R.error("请选择需要删除的商品");
         }
-        log.info("准备删除菜品，IDs: {}", ids);
+        log.info("准备删除商品，IDs: {}", ids);
         try {
-            // 调用 Service 层删除菜品的方法 (该方法不应涉及口味)
+            // 调用 Service 层删除商品的方法 (该方法不应涉及口味)
             dishService.deleteDishByIds(ids); // <--- 修改点：确保此方法只删 Dish
 
-            // 移除删除菜品对应口味的逻辑
+            // 移除删除商品对应口味的逻辑
             /*
             LambdaQueryWrapper<DishFlavor> queryWrapper = new LambdaQueryWrapper<>();
-            queryWrapper.in(DishFlavor::getDishId, ids);
+            queryWrapper.in(DishFlavor::getdishId, ids);
             dishFlavorService.remove(queryWrapper); // 移除此行
             */
 
-            // 清理所有菜品的缓存数据
+            // 清理所有商品的缓存数据
 //            Set<String> keys = redisTemplate.keys("dish_*");
 //            if (keys != null && !keys.isEmpty()) {
 //                redisTemplate.delete(keys);
 //                log.info("因删除操作，清理了Redis缓存: {}", keys);
 //            }
 
-            return R.success("菜品删除成功");
+            return R.success("商品删除成功");
         } catch (CustomException e) {
-            log.error("删除菜品业务校验失败", e);
+            log.error("删除商品业务校验失败", e);
             return R.error(e.getMessage());
         } catch (Exception e) {
-            log.error("删除菜品失败", e);
-            return R.error("删除菜品失败，请稍后重试");
+            log.error("删除商品失败", e);
+            return R.error("删除商品失败，请稍后重试");
         }
     }
 
     /**
-     * 根据条件查询对应菜品数据 (已移除口味处理)
+     * 根据条件查询对应商品数据 (已移除口味处理)
      *
      * @param dish 查询条件，常用 categoryId 和 status
      * @return 返回 List<DishDto>，其中不包含口味信息
      */
     @GetMapping("/list")
     public R<List<DishDto>> list(Dish dish) {
-        log.info("根据条件查询菜品列表: categoryId={}, status={}", dish.getCategoryId(), dish.getStatus());
+        log.info("根据条件查询商品列表: categoryId={}, status={}", dish.getCategoryId(), dish.getStatus());
         List<DishDto> dishDtoList = null;
         String key = null;
 
@@ -272,14 +272,7 @@ public class DishController {
                 }
             }
 
-            // 移除查询和设置口味的逻辑
-            /*
-            Long dishId = item.getId();
-            LambdaQueryWrapper<DishFlavor> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-            lambdaQueryWrapper.eq(DishFlavor::getDishId, dishId);
-            List<DishFlavor> dishFlavorList = dishFlavorService.list(lambdaQueryWrapper); // 移除此服务调用
-            dishDto.setFlavors(dishFlavorList); // 移除设置
-            */
+
             return dishDto;
         }).collect(Collectors.toList());
 

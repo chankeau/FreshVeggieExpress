@@ -14,7 +14,7 @@ public class DishDto extends Dish {
 
     // 移除了 private List<DishFlavor> flavors = new ArrayList<>();
 
-    //菜品分类名称
+    //商品分类名称
     private String categoryName;
 
     private String unit;

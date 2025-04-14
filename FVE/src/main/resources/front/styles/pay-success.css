@@ -1,97 +1,138 @@
+:root {
+  --fresh-green: #4CAF50;
+  --leaf-green: #8BC34A;
+  --button-green-hover: #388E3C;
+  --white: #ffffff;
+  --page-bg: #f0f2f5; /* Consistent background */
+  --text-dark: #333333;
+  --text-medium: #555555;
+  --text-light: #888888;
+  --success-icon-color: var(--fresh-green); /* Green for success icon */
+}
+
+#pay_success {
+  height: 100%;
+  background-color: var(--white); /* White background for this specific page */
+  font-family: "PingFangSC-Regular", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
 #pay_success .divHead {
   width: 100%;
-  height: 88rem;
-  opacity: 1;
-  background: #333333;
+  height: 80rem;
+  background: linear-gradient(135deg, var(--fresh-green) 0%, var(--leaf-green) 100%);
   position: relative;
+  box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3);
+  display: flex;
+  align-items: center;
+  padding: 0 15rem;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 #pay_success .divHead .divTitle {
-  font-size: 18rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
+  flex-grow: 1;
+  font-size: 19rem;
+  font-weight: 600;
   text-align: center;
-  color: #ffffff;
-  line-height: 25rem;
-  letter-spacing: 0;
+  color: var(--white);
+  letter-spacing: 0.5px;
+  position: static;
+  line-height: normal;
+  /* Adjust padding if icons are present */
+  /* Example: padding: 0 25rem; if there's an icon on both sides */
+  padding-right: 25rem; /* Assuming only back arrow */
+}
+
+#pay_success .divHead .divTitle i { /* Back Arrow */
+  position: static;
+  transform: none;
+  font-size: 24rem;
+  color: var(--white);
+  cursor: pointer;
+  float: left;
+}
+
+#pay_success .divHead .divTitle img { /* Potential other icon (e.g., home) */
+  /* Style if needed, e.g., position absolute right */
+  width: 22rem;
+  height: 22rem;
   position: absolute;
-  bottom: 13rem;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#pay_success .divHead .divTitle i {
-  margin-left: 16rem;
-}
-
-#pay_success .divHead .divTitle img {
-  width: 18rem;
-  height: 18rem;
-  margin-right: 19rem;
+  right: 15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 #pay_success .divContent {
-  height: calc(100vh - 88rem);
+  flex-grow: 1; /* Take remaining height */
   width: 100%;
-  background: #ffffff;
+  background: var(--white); /* Keep white content area */
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
+  justify-content: center; /* Center content vertically */
+  padding-bottom: 50rem; /* Add some padding at the bottom */
+  box-sizing: border-box;
 }
 
-#pay_success .divContent img {
-  margin-top: 148rem;
-  margin-bottom: 19rem;
-  width: 90rem;
-  height: 86rem;
+#pay_success .divContent img.success-icon { /* Specific class for success icon */
+  width: 100rem; /* Larger icon */
+  height: 100rem;
+  margin-bottom: 30rem; /* More space below icon */
+  /* Assuming the icon itself is green, otherwise, use CSS filters or a green background */
+  /* filter: drop-shadow(0 4px 8px rgba(76, 175, 80, 0.3)); */
 }
 
 #pay_success .divContent .divSuccess {
-  height: 33rem;
-  opacity: 1;
-  font-size: 24rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: center;
-  color: #333333;
-  line-height: 33rem;
-  margin-top: 19rem;
-  margin-bottom: 10rem;
+  font-size: 26rem; /* Larger success text */
+  font-family: "PingFangSC-Semibold", sans-serif; /* Bolder */
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.4;
+  margin-bottom: 12rem; /* Space below */
 }
 
 #pay_success .divContent .divDesc,
-.divDesc1 {
-  height: 22rem;
-  opacity: 1;
+#pay_success .divContent .divDesc1 { /* Combine selectors if styling is the same */
   font-size: 16rem;
-  font-family: PingFangSC, PingFangSC-Regular;
   font-weight: 400;
-  text-align: center;
-  color: #666666;
-  line-height: 22rem;
+  color: var(--text-medium);
+  line-height: 1.6;
 }
 
 #pay_success .divContent .divDesc1 {
-  margin-top: 7rem;
-  margin-bottom: 20rem;
+  margin-top: 8rem;
+  margin-bottom: 35rem; /* More space before button */
 }
 
 #pay_success .divContent .btnView {
-  width: 124rem;
-  height: 36rem;
-  opacity: 1;
-  background: #adc8a2;
-  border-radius: 18px;
-  opacity: 1;
-  font-size: 15rem;
-  font-family: PingFangSC, PingFangSC-Regular;
+  min-width: 160rem; /* Wider button */
+  height: 48rem; /* Taller */
+  padding: 0 35rem;
+  background: linear-gradient(135deg, var(--leaf-green) 0%, var(--fresh-green) 100%);
+  border-radius: 24rem;
+  font-size: 16rem;
   font-weight: 500;
   text-align: center;
-  color: #333333;
-  line-height: 21rem;
-  letter-spacing: 0;
-  line-height: 36rem;
+  color: var(--white);
+  line-height: 48rem; /* Match height */
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 8px rgba(76, 175, 80, 0.4);
+  border: none; /* Remove default border if any */
+}
+
+#pay_success .divContent .btnView:hover {
+  background: linear-gradient(135deg, var(--fresh-green) 0%, var(--button-green-hover) 100%);
+  box-shadow: 0 5px 12px rgba(76, 175, 80, 0.5);
+  transform: translateY(-1px);
+}
+
+#pay_success .divContent .btnView:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 5px rgba(76, 175, 80, 0.3);
 }

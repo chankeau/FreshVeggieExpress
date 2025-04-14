@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>添加/修改菜品</title>
+  <title>添加/修改商品</title>
   <!-- 引入样式 -->
   <link rel="stylesheet" href="../../plugins/element-ui/index.css" />
   <link rel="stylesheet" href="../../styles/common.css" />
@@ -57,22 +57,22 @@
     >
 
       <el-form-item
-              label="菜品名称:"
+              label="商品名称:"
               prop="name"
       >
         <el-input
                 v-model="ruleForm.name"
-                placeholder="请填写菜品名称"
+                placeholder="请填写商品名称"
                 maxlength="20"
         />
       </el-form-item>
       <el-form-item
-              label="菜品分类:"
+              label="商品分类:"
               prop="categoryId"
       >
         <el-select
                 v-model="ruleForm.categoryId"
-                placeholder="请选择菜品分类"
+                placeholder="请选择商品分类"
                 style="width: 100%;"
         >
           <el-option v-for="(item,index) in dishList" :key="index" :label="item.name" :value="item.id" />
@@ -80,12 +80,12 @@
       </el-form-item>
 
       <el-form-item
-              label="菜品价格:"
+              label="商品价格:"
               prop="price"
       >
         <el-input
                 v-model="ruleForm.price"
-                placeholder="请设置菜品价格"
+                placeholder="请设置商品价格"
                 type="number"
         />
 
@@ -94,7 +94,7 @@
 
 
       <el-form-item
-              label="菜品图片:"
+              label="商品图片:"
               prop="image"
               class="uploadImg"
       >
@@ -124,7 +124,7 @@
       </el-form-item>
 
       <el-form-item
-              label="菜品描述:"
+              label="商品描述:"
               prop="description"
       >
         <!--  prop 应绑定到 ruleForm 中的 description 字段 -->
@@ -132,7 +132,7 @@
                 v-model="ruleForm.description"
                 type="textarea"
                 :rows="3"
-                placeholder="菜品描述，最长200字"
+                placeholder="商品描述，最长200字"
                 maxlength="200"
         />
       </el-form-item>
@@ -191,7 +191,7 @@
         id: '',
         imageUrl: '',
         actionType: '',
-        dishList: [], // 菜品分类列表
+        dishList: [], // 商品分类列表
         ruleForm: {
           'name': '',
           'id': '', // 编辑时会有值
@@ -200,7 +200,7 @@
           'image': '', // 图片上传后保存的图片名称
           'description': '',
           'status': true, // 默认启售
-          'categoryId': '' // 菜品分类ID
+          'categoryId': '' // 商品分类ID
         },
         // mak: false // 似乎未使用，已删除
       }
@@ -210,24 +210,24 @@
         // 添加对图片和描述的简单校验（如果需要）
         const validateImage = (rule, value, callback) => {
           if (!this.imageUrl) {
-            callback(new Error('请上传菜品图片'));
+            callback(new Error('请上传商品图片'));
           } else {
             callback();
           }
         };
         return {
           'name': [
-            {'required': true, 'message': '请填写菜品名称', 'trigger': 'blur'}
+            {'required': true, 'message': '请填写商品名称', 'trigger': 'blur'}
           ],
           'categoryId': [
-            {'required': true, 'message': '请选择菜品分类', 'trigger': 'change'}
+            {'required': true, 'message': '请选择商品分类', 'trigger': 'change'}
           ],
           'price': [
             {
               'required': true,
               validator: (rule, value, callback) => {
                 if (!value) {
-                  callback(new Error('请填写菜品价格'))
+                  callback(new Error('请填写商品价格'))
                 } else {
                   // 允许整数或最多两位小数的正数
                   const reg = /^(0|[1-9]\d*)(\.\d{1,2})?$/;
@@ -235,7 +235,7 @@
                     if(parseFloat(value) < 10000){ // 价格转为数字比较
                       callback()
                     }else{
-                      callback(new Error('菜品价格需小于10000'))
+                      callback(new Error('商品价格需小于10000'))
                     }
                   } else {
                     callback(new Error('价格必须是大于等于0的数字，且最多保留两位小数'))
@@ -251,13 +251,13 @@
           ],
           // description 非必须，如果需要可添加
           // 'description': [
-          //   {'required': true, 'message': '请填写菜品描述', 'trigger': 'blur'}
+          //   {'required': true, 'message': '请填写商品描述', 'trigger': 'blur'}
           // ],
         }
       }
     },
     created() {
-      this.getDishList(); // 获取菜品分类
+      this.getDishList(); // 获取商品分类
       // getFlavorListHand() 已删除
       this.id = requestUrlParam('id');
       this.actionType = this.id ? 'edit' : 'add';
@@ -270,7 +270,7 @@
     methods: {
       async init () {
         queryDishById(this.id).then(res => {
-          console.log('查询菜品返回:', res);
+          console.log('查询商品返回:', res);
           if (String(res.code) === '1') {
             this.ruleForm = { ...res.data };
             // 价格从分转为元显示
@@ -290,7 +290,7 @@
             // this.dishFlavors = res.data.flavors && res.data.flavors.map(obj => ({ ...obj, value: JSON.parse(obj.value),showOption: false }))
             // console.log('this.dishFlavors',this.dishFlavors)
           } else {
-            this.$message.error(res.msg || '获取菜品信息失败');
+            this.$message.error(res.msg || '获取商品信息失败');
           }
         }).catch(err => {
           this.$message.error('请求出错了：' + err);
@@ -302,15 +302,15 @@
       // keyDownHandle, getFlavorListHand, selectFlavor, outSelect,
       // inputHandle, checkOption, selectHandle 已删除
 
-      // 获取菜品分类 - 确保 API 路径和参数正确
+      // 获取商品分类 - 确保 API 路径和参数正确
       getDishList () {
         // 假设你的 category.js 中有 getCategoryList 方法
-        // 并且它接受 { type: 1 } 来获取菜品分类
+        // 并且它接受 { type: 1 } 来获取商品分类
         getCategoryList({ 'type': 1 }).then(res => {
           if (res.code === 1) {
             this.dishList = res.data;
           } else {
-            this.$message.error(res.msg || '获取菜品分类失败');
+            this.$message.error(res.msg || '获取商品分类失败');
           }
         }).catch(err => {
           this.$message.error('请求出错了：' + err);
@@ -322,7 +322,7 @@
           if (valid) {
             // 手动检查图片是否已上传（因为 el-upload 的校验可能不完美）
             if (!this.ruleForm.image) {
-              this.$message.error('请上传菜品图片');
+              this.$message.error('请上传商品图片');
               return;
             }
 
@@ -340,7 +340,7 @@
               delete params.id; // 新增时不需要传 id
               addDish(params).then(res => {
                 if (res.code === 1) {
-                  this.$message.success('菜品添加成功！');
+                  this.$message.success('商品添加成功！');
                   if (!st) { // 如果不是“保存并继续”
                     this.goBack();
                   } else { // 如果是“保存并继续”
@@ -371,7 +371,7 @@
               // editDish(params) 函数需要确认是否存在且路径正确
               editDish(params).then(res => {
                 if (res.code === 1) {
-                  this.$message.success('菜品修改成功！');
+                  this.$message.success('商品修改成功！');
                   this.goBack();
                 } else {
                   this.$message.error(res.msg || '修改失败');
@@ -435,11 +435,11 @@
       },
 
       goBack(){
-        // 跳转回菜品列表页面
+        // 跳转回商品列表页面
         window.parent.menuHandle({
           id: '4', // 确保这个 id 和你的菜单配置一致
           url: '/backend/page/food/list.html',
-          name: '菜品管理'
+          name: '商品管理'
         },false);
       }
     }

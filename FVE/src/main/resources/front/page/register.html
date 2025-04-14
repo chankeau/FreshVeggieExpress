@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <title>注册 - 蔬鲜递</title>
+    <link rel="icon" href="./../images/favico.ico">
+    <script src="./../js/base.js"></script>
+
+    <link rel="stylesheet" href="../../backend/plugins/element-ui/index.css" />
+
+    <link rel="stylesheet" href="../styles/index.css" />
+
+    <link rel="stylesheet" href="./../styles/login.css" />
+    <style>
+        body {
+            background-color: #f7fcf8;             min-height: 100vh;
+            padding-bottom: 50rem;         }
+
+        .logo-img {
+            display: block;
+            margin: 0 auto;             padding-top: 40rem;             padding-bottom: 30rem;             width: 150rem;         }
+
+        #register {
+            padding: 0 30rem;         }
+
+        #register .input-group {
+            margin-bottom: 18rem !important;             border-radius: 25rem !important;             background-color: #fff !important;
+            border: 1px solid #e0f2e9 !important;             overflow: hidden;             height: 50rem;             display: flex;             align-items: center;         }
+
+        #register .input-group .el-input .el-input__inner {
+            border: none !important;             border-radius: 25rem !important;             height: 100% !important;             line-height: 50rem !important;             padding: 0 20rem !important;             font-size: 15rem !important;
+            background-color: transparent !important;             color: #333;         }
+        #register .input-group .el-input .el-input__inner::placeholder {
+            color: #cccccc !important;             font-size: 15rem !important;
+        }
+
+        .input-group .sex-radio-group {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 20rem;             height: 100%;             width: 100%;
+        }
+
+        .sex-radio-group .el-radio {
+            margin-right: 40rem !important;             display: flex !important;
+            align-items: center !important;
+        }
+
+        .sex-radio-group .el-radio__inner {
+            display: none !important;
+        }
+
+        .sex-radio-group .el-radio__label {
+            font-size: 16rem !important;
+            padding-left: 25rem !important;             position: relative;
+            cursor: pointer;
+            color: #333 !important;             line-height: 1.2;         }
+
+        .sex-radio-group .el-radio__label::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18rem;
+            height: 18rem;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+
+        .sex-radio-group .el-radio__input.is-checked + .el-radio__label::before {
+            background-color: #4caf50 !important;
+            border-color: #4caf50 !important;
+        }
+
+
+        .sex-radio-group .el-radio__input.is-checked + .el-radio__label::after {
+            content: "";
+            position: absolute;
+            left: 5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8rem;
+            height: 8rem;
+            border-radius: 50%;
+            background-color: #fff !important;
+        }
+
+
+        .sex-radio-group .el-radio__input.is-checked + .el-radio__label {
+            color: #333 !important;
+        }
+
+
+
+
+        .code-container {
+
+        }
+        .code-input .el-input__inner {
+
+        }
+
+
+        .agreement-code-row {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 0 5rem !important;
+            margin-bottom: 20rem !important;
+            font-size: 13rem !important;
+            height: auto !important;
+        }
+
+        .divAgreement {
+            display: flex !important;
+            align-items: center !important;
+            flex-shrink: 0;
+        }
+
+        .divAgreement input[type="checkbox"] {
+            width: 16rem !important;
+            height: 16rem !important;
+            margin-right: 8rem !important;
+            accent-color: #4caf50;                         appearance: none;
+            -webkit-appearance: none;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+            vertical-align: middle;         }
+        .divAgreement input[type="checkbox"]:checked {
+            background-color: #4caf50;
+            border-color: #4caf50;
+        }
+        .divAgreement input[type="checkbox"]:checked::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 1rem;
+            left: 5rem;
+            width: 4rem;
+            height: 8rem;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+
+        .divAgreement label {
+            color: #757575 !important;
+            font-size: 13rem !important;
+            vertical-align: middle;
+        }
+
+        .divAgreement label a {
+            color: #0277bd !important;
+            text-decoration: none !important;
+        }
+        .divAgreement label a:hover {
+            text-decoration: underline !important;
+        }
+
+        .get-code-btn {
+            font-size: 13rem !important;
+            color: #aaaaaa;
+            cursor: pointer;
+            white-space: nowrap;
+            padding-left: 10rem;
+        }
+
+
+        .divMsg {
+            color: #ff4d4f !important;
+            font-size: 12rem !important;
+            text-align: center;
+            margin-bottom: 10rem !important;
+            height: 15rem;
+        }
+
+
+        #register .el-button.btnSubmit {
+            width: 100% !important;
+            height: 50rem !important;
+            border-radius: 25rem !important;
+            font-size: 18rem !important;
+            font-weight: bold;
+            border: none !important;
+            margin-top: 10rem !important;
+            transition: background-color 0.3s ease;
+        }
+
+
+        #register .el-button.btnSubmit.btnCanLogin {
+            background-color: #a0d8ef !important;
+            color: #fff !important;
+        }
+
+
+        #register .el-button.btnSubmit.is-disabled,
+        #register .el-button.btnSubmit.btnDisabled
+        {
+            background-color: #d6eef8 !important;
+            color: #ffffffcc !important;
+
+            opacity: 1 !important;
+            cursor: not-allowed !important;
+        }
+
+
+
+        .login-link {
+            text-align: center;
+            margin-top: 25rem !important;
+            font-size: 13rem !important;
+            color: #757575 !important;
+        }
+
+        .login-link a {
+            color: #0277bd !important;
+            text-decoration: none !important;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline !important;
+        }
+
+
+        #register .el-loading-mask {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        #register .el-loading-spinner .path {
+            stroke: #4caf50;
+        }
+
+    </style>
+</head>
+<body>
+
+<img class="logo-img" src="../images/login-logo.png" alt="logo" />
+
+
+<div id="register" v-loading="loading">
+
+
+    <div class="input-group">
+        <el-input placeholder="请输入姓名/昵称" v-model.trim="form.name" maxlength='50'/>
+    </div>
+
+
+    <div class="input-group">
+        <el-input placeholder="请输入手机号" v-model.trim="form.phone" type="tel" maxlength='11'/>
+    </div>
+
+
+    <div class="input-group">
+        <el-input placeholder="请输入邮箱地址" v-model.trim="form.email" type="email" maxlength='50'/>
+    </div>
+
+
+    <div class="input-group">
+        <el-radio-group v-model="form.sex" class="sex-radio-group">
+            <el-radio label="1">男</el-radio>
+            <el-radio label="2">女</el-radio>
+        </el-radio-group>
+    </div>
+
+
+    <div class="input-group">
+        <el-input placeholder="身份证号 (可选)" v-model.trim="form.idNumber" maxlength='18'/>
+    </div>
+
+
+    <div class="input-group code-container">
+        <el-input placeholder="请输入验证码" v-model.trim="form.code" maxlength='20' class="code-input"/>
+    </div>
+
+
+    <div class="agreement-code-row">
+        <div class="divAgreement">
+            <input type="checkbox" v-model="agreePolicy" id="agreePolicy" />
+            <label for="agreePolicy">我已阅读并同意<a href="#" @click.prevent>《隐私政策》</a></label>
+
+        </div>
+        <span :style="{ color: isCountingDown ? '#ccc' : (form.emailIsValid && agreePolicy ? '#4caf50' : '#aaa'), cursor: isCountingDown ? 'default' : (form.emailIsValid && agreePolicy ? 'pointer' : 'not-allowed') }"
+              class="get-code-btn"
+              @click='getCode'>
+              {{ getCodeText }}
+        </span>
+    </div>
+
+
+    <div class="divMsg" v-if="msgFlag">{{ validationMessage }}</div>
+
+
+    <el-button type="primary"
+               :class="registerButtonClass"
+               @click="btnRegister"
+               :disabled="!canRegister">
+        注册
+    </el-button>
+
+    <div class="login-link">
+        已有账号？ <a href="./login.html">立即登录</a>
+    </div>
+
+</div>
+
+
+<script src="../../backend/plugins/vue/vue.js"></script>
+<script src="../../backend/plugins/element-ui/index.js"></script>
+
+<script src="../../backend/plugins/axios/axios.min.js"></script>
+<script src="./../js/request.js"></script>
+<script src="./../api/login.js"></script>
+<script src="./../api/register.js"></script>
+<script src="./../js/vant.min.js"></script>
+<script>
+
+    new Vue({
+        el:"#register",
+        data(){
+            return {
+                form:{
+                    name: '',
+                    phone: '',
+                    email: '',
+                    sex: '1',
+                    idNumber: '',
+                    code: '',
+                    emailIsValid: false
+                },
+                validationMessage: '',
+                msgFlag: false,
+                loading: false,
+                agreePolicy: false,
+                isCountingDown: false,
+                countdown: 60,
+                getCodeText: '获取验证码',
+                timer: null
+            }
+        },
+        computed:{
+            canRegister() {
+
+
+                return this.form.name &&
+                    this.form.phone &&
+                    this.form.emailIsValid &&
+                    this.form.sex &&
+                    this.form.code &&
+                    this.agreePolicy;
+            },
+            registerButtonClass() {
+
+                return {
+                    btnSubmit: true,
+                    btnCanLogin: this.canRegister,
+                    btnDisabled: !this.canRegister
+
+                };
+            }
+        },
+        watch: {
+
+            'form.email'(newVal) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                this.form.emailIsValid = emailRegex.test(newVal);
+
+                if ((this.form.emailIsValid || newVal === '') && this.validationMessage === '邮箱格式不正确') {
+                    this.clearError();
+                }
+            },
+
+            'form.phone'(newVal) {
+                const phoneRegex = /^1[3-9]\d{9}$/;
+                if (phoneRegex.test(newVal) && this.validationMessage === '请输入有效的11位手机号') {
+                    this.clearError();
+                }
+            }
+        },
+        methods: {
+
+            clearError() {
+                this.validationMessage = '';
+                this.msgFlag = false;
+            },
+
+            async getCode() {
+
+                if (this.isCountingDown) return;
+
+
+                if (!this.agreePolicy) {
+                    this.$message.warning('请先阅读并同意《隐私政策》');
+                    return;
+                }
+                if (!this.form.email) {
+                    this.$message.warning('请输入邮箱地址');
+                    return;
+                }
+                if (!this.form.emailIsValid) {
+                    this.validationMessage = '邮箱格式不正确';
+                    this.msgFlag = true;
+
+                    this.$message.warning('邮箱格式不正确，请检查');
+                    return;
+                }
+
+
+                this.clearError();
+
+
+                this.isCountingDown = true;
+                this.getCodeText = `${this.countdown}s后重试`;
+                this.timer = setInterval(() => {
+                    if (this.countdown > 1) {
+                        this.countdown--;
+                        this.getCodeText = `${this.countdown}s后重试`;
+                    } else {
+                        this.resetCodeButton();
+                    }
+                }, 1000);
+
+
+                try {
+
+                    const res = await sendEmailCodeApi({ email: this.form.email });
+                    if (res.code === 1) {
+                        this.$message.success(res.msg || '验证码已发送，请查收');
+                    } else {
+                        this.$message.error(res.msg || '验证码发送失败');
+                        this.resetCodeButton();
+                    }
+                } catch (error) {
+                    console.error("发送验证码失败:", error);
+                    this.$message.error('请求发送验证码接口出错');
+                    this.resetCodeButton();
+                }
+            },
+
+
+            resetCodeButton() {
+                clearInterval(this.timer);
+                this.isCountingDown = false;
+                this.getCodeText = '获取验证码';
+                this.countdown = 60;
+                this.timer = null;
+            },
+
+
+            async btnRegister() {
+
+                if (!this.agreePolicy) { this.$message.warning('请先阅读并同意《隐私政策》'); return; }
+                if (!this.form.name) { this.$message.warning('请输入姓名/昵称'); return; }
+                if (!this.form.phone) { this.$message.warning('请输入手机号'); return; }
+
+                const phoneRegex = /^1[3-9]\d{9}$/;
+                if (!phoneRegex.test(this.form.phone)) { this.$message.warning('请输入有效的11位手机号'); return;}
+                if (!this.form.email) { this.$message.warning('请输入邮箱地址'); return; }
+                if (!this.form.emailIsValid) { this.$message.warning('邮箱格式不正确'); return; }
+                if (!this.form.code) { this.$message.warning('请输入验证码'); return; }
+
+
+                if (!this.canRegister) {
+                    console.warn("Registration attempt failed pre-check.");
+                    return;
+                }
+
+
+                this.loading = true;
+                this.clearError();
+
+                try {
+
+                    const registrationData = {
+                        name: this.form.name,
+                        phone: this.form.phone,
+                        email: this.form.email,
+                        sex: this.form.sex,
+                        idNumber: this.form.idNumber,
+                        code: this.form.code
+                    };
+
+
+                    const res = await register(registrationData);
+
+                    this.loading = false;
+                    if (res.code === 1) {
+                        this.$message.success(res.msg || '注册成功！');
+
+                        window.requestAnimationFrame(()=>{
+                            window.location.href= './login.html'
+                        });
+                    } else {
+
+                        this.validationMessage = res.msg || '注册失败，请稍后重试';
+                        this.msgFlag = true;
+
+                        this.$notify({ type:'warning', message:res.msg || '注册失败，请检查信息' });
+                    }
+                } catch (error) {
+                    this.loading = false;
+                    console.error("注册失败:", error);
+                    this.validationMessage = '注册请求出错，请检查网络或联系管理员';
+                    this.msgFlag = true;
+                    this.$notify({ type:'error', message:'注册请求出错' });
+                }
+            }
+        },
+        beforeDestroy() {
+
+            if (this.timer) {
+                clearInterval(this.timer);
+            }
+        }
+    })
+</script>
+</body>
+</html>

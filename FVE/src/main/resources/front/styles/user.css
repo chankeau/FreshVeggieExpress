@@ -1,240 +1,287 @@
+:root {
+  --fresh-green: #4CAF50;
+  --leaf-green: #8BC34A;
+  --button-green-hover: #388E3C;
+  --white: #ffffff;
+  --page-bg: #f0f2f5;
+  --text-dark: #333333;
+  --text-medium: #555555;
+  --text-light: #888888;
+  --border-light: #e8e8e8;
+  --header-bg: linear-gradient(135deg, var(--fresh-green) 0%, var(--leaf-green) 100%);
+  --link-color: var(--text-medium);
+  --link-icon-color: var(--leaf-green);
+  --quit-button-bg: #fff7f7;
+  --quit-button-text: #f56c6c;
+  --quit-button-border: #fde2e2;
+  --quit-button-hover-bg: #fef0f0;
+}
+
 #user {
   height: 100%;
+  background-color: var(--page-bg);
+  font-family: "PingFangSC-Regular", sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 #user .divHead {
   width: 100%;
-  height: 164rem;
-  opacity: 1;
-  background: #adc8a2;
+  /* height: 164rem; Remove fixed height */
+  background: var(--header-bg);
   box-sizing: border-box;
-  padding-left: 12rem;
-  padding-right: 12rem;
+  padding: 40rem 20rem 25rem 20rem; /* Adjust padding */
+  flex-shrink: 0;
+  color: var(--white);
 }
 
 #user .divHead .divTitle {
-  height: 25rem;
-  opacity: 1;
-  font-size: 18rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: center;
-  color: #333333;
-  line-height: 25rem;
-  letter-spacing: 0;
-  padding-top: 50rem;
-  margin-bottom: 18rem;
-  position: relative;
-}
-
-#user .divHead .divTitle i {
-  position: absolute;
-  left: 0;
-  margin-top: 5rem;
+  display: none; /* Hide the separate title, integrate into user info potentially */
 }
 
 #user .divHead .divUser {
   display: flex;
+  align-items: center; /* Center vertically */
 }
 
-#user .divHead .divUser > img {
-  width: 58rem;
-  height: 58rem;
+#user .divHead .divUser > img.user-avatar { /* Specific class for avatar */
+  width: 64rem; /* Slightly larger avatar */
+  height: 64rem;
   border-radius: 50%;
-  margin-right: 16rem;
+  margin-right: 18rem;
+  border: 2px solid rgba(255, 255, 255, 0.5); /* White border */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #user .divHead .divUser .desc {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex-grow: 1; /* Allow text to take space */
 }
 
 #user .divHead .divUser .desc .divName {
-  opacity: 1;
-  font-size: 16rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: left;
-  color: #333333;
-  margin-right: 6rem;
-  margin-bottom: 5rem;
+  font-size: 18rem; /* Larger name */
+  font-weight: 600; /* Bolder name */
+  color: var(--white);
+  margin-bottom: 6rem;
   display: flex;
   align-items: center;
 }
 
-#user .divHead .divUser .desc .divName img {
-  width: 16rem;
-  height: 16rem;
-  opacity: 1;
-  margin-left: 6rem;
+#user .divHead .divUser .desc .divName img.gender-icon { /* Specific class for gender icon */
+  width: 18rem;
+  height: 18rem;
+  margin-left: 8rem;
+  /* Add filter if needed for white icon */
+  /* filter: brightness(0) invert(1); */
 }
 
 #user .divHead .divUser .desc .divPhone {
-  font-size: 14px;
-  font-family: PingFangSC, PingFangSC-Regular;
+  font-size: 14rem;
+  font-family: "DIN-Medium", Helvetica, sans-serif; /* Use DIN font for phone */
   font-weight: 400;
-  text-align: left;
-  color: #333333;
+  color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+  letter-spacing: 0.5px;
 }
 
 #user .divContent {
-  height: calc(100% - 174rem);
+  flex-grow: 1; /* Take remaining height */
   overflow-y: auto;
+  padding: 15rem 12rem; /* Padding for content area */
 }
 
 #user .divLinks {
-  height: 104rem;
-  opacity: 1;
-  background: #ffffff;
-  border-radius: 6rem;
-  padding-left: 17rem;
-  padding-right: 11rem;
-  margin: 10rem;
+  background: var(--white);
+  border-radius: 10rem; /* More rounded */
+  padding: 8rem 15rem; /* Adjust padding */
+  margin-bottom: 15rem; /* Space below links */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
 }
 
 #user .divLinks .item {
-  height: 51rem;
-  line-height: 51rem;
+  height: 55rem; /* Slightly taller */
+  line-height: 55rem;
   position: relative;
   display: flex;
   align-items: center;
+  font-size: 15rem;
+  color: var(--link-color);
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+#user .divLinks .item:hover {
+  background-color: #f9f9f9; /* Subtle hover */
 }
 
 #user .divLinks .divSplit {
-  height: 1rem;
-  opacity: 1;
-  background-color: #ebebeb;
+  height: 1px;
+  background-color: var(--border-light); /* Lighter border */
   border: 0;
+  margin: 0 -15rem; /* Extend border across padding */
 }
 
-#user .divLinks .item img {
-  width: 18rem;
-  height: 18rem;
-  margin-right: 5rem;
+#user .divLinks .item img.link-icon { /* Specific class for icons */
+  width: 20rem; /* Slightly larger */
+  height: 20rem;
+  margin-right: 12rem; /* More space */
+  /* Use filter or specific icons with desired color */
+  /* filter: invert(50%) sepia(98%) saturate(367%) hue-rotate(82deg) brightness(90%) contrast(86%); */
+  /* Or use font icons */
 }
 
-#user .divLinks .item i {
+#user .divLinks .item span.link-text {
+  flex-grow: 1; /* Text takes available space */
+}
+
+#user .divLinks .item i.arrow-icon { /* Class for chevron arrow */
   position: absolute;
   right: 0;
   top: 50%;
-  transform: translate(0, -50%);
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 14rem;
 }
 
 #user .divOrders {
-  margin: 0 10rem 10rem 10rem;
-  background: #ffffff;
-  border-radius: 6rem;
-  padding-left: 10rem;
-  padding-right: 10rem;
-  padding-bottom: 17rem;
+  margin-bottom: 15rem;
+  background: var(--white);
+  border-radius: 10rem;
+  padding: 0 15rem 20rem 15rem; /* Adjust padding */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
 }
 
 #user .divOrders .title {
-  height: 60rem;
-  line-height: 60rem;
-  opacity: 1;
+  height: 55rem;
+  line-height: 55rem;
   font-size: 16rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 500;
-  text-align: left;
-  color: #333333;
-  letter-spacing: 0;
-  border-bottom: 2px solid #efefef;
+  font-weight: 600; /* Bolder title */
+  color: var(--text-dark);
+  border-bottom: 1px solid var(--border-light); /* Lighter border */
+  margin-bottom: 10rem;
 }
 
+/* Reuse styles from order.css for consistency - Copy relevant .timeStatus, .dishList, .result, .btn styles */
+/* --- Copied & Adapted from Revised order.css --- */
 #user .divOrders .timeStatus {
-  height: 46rem;
-  line-height: 16rem;
-  font-size: 14rem;
+  height: auto;
+  line-height: 1.4;
+  font-size: 13rem;
   font-family: PingFangSC, PingFangSC-Regular;
   font-weight: 400;
   text-align: left;
-  color: #666666;
-  line-height: 20rem;
+  color: var(--text-light);
   letter-spacing: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2rem dashed #efefef;
+  padding-bottom: 10rem;
+  margin-bottom: 10rem;
+  border-bottom: 1px solid var(--border-light);
 }
-
 #user .divOrders .timeStatus span:first-child {
-  color: #333333;
+  color: var(--text-secondary);
+  font-weight: 500;
 }
-
+#user .divOrders .timeStatus span:last-child {
+  color: var(--fresh-green);
+  font-weight: 500;
+  font-size: 14rem;
+}
 #user .divOrders .dishList {
-  padding-top: 10rem;
-  padding-bottom: 11rem;
+  padding: 5rem 0 10rem 0;
 }
-
 #user .divOrders .dishList .item {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding: 4rem 0;
   display: flex;
   justify-content: space-between;
-  height: 20rem;
-  opacity: 1;
+  align-items: center;
   font-size: 14rem;
   font-family: PingFangSC, PingFangSC-Regular;
   font-weight: 400;
-  text-align: left;
-  color: #666666;
-  line-height: 20rem;
+  color: var(--text-medium);
+  line-height: 1.5;
   letter-spacing: 0;
 }
-
+#user .divOrders .dishList .item span:first-child::before {
+  content: '· ';
+  color: var(--leaf-green);
+  font-weight: bold;
+  margin-right: 4px;
+}
+#user .divOrders .dishList .item span:last-child {
+  color: var(--text-light);
+  font-size: 13rem;
+  font-style: italic;
+}
 #user .divOrders .result {
   display: flex;
   justify-content: flex-end;
-  height: 20rem;
-  opacity: 1;
+  align-items: flex-end;
+  padding-top: 10rem;
+  margin-top: 10rem;
+  border-top: 1px solid var(--border-light);
   font-size: 14rem;
-  font-family: PingFangSC, PingFangSC-Regular;
-  font-weight: 400;
-  text-align: left;
-  color: #666666;
-  line-height: 20rem;
+  color: var(--text-medium);
+  line-height: 1.5;
 }
-
 #user .divOrders .result .price {
-  color: black;
+  font-family: "DIN-Medium", Helvetica, sans-serif;
+  font-size: 18rem; /* Slightly smaller than order page */
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-left: 8rem;
+  line-height: 1;
 }
-
+#user .divOrders .result .price::before {
+  content: '¥';
+  font-size: 14rem;
+  margin-right: 2px;
+  font-weight: normal;
+  color: var(--text-dark);
+}
 #user .divOrders .btn {
-  margin-top: 20rem;
   display: flex;
   justify-content: flex-end;
+  margin-top: 15rem;
 }
-
 #user .divOrders .btn .btnAgain {
-  width: 124rem;
-  height: 36rem;
-  opacity: 1;
-  border: 1px solid #e5e4e4;
-  border-radius: 19rem;
-  opacity: 1;
-  font-size: 14rem;
-  font-family: PingFangSC, PingFangSC-Regular;
+  min-width: 90rem;
+  height: 34rem;
+  padding: 0 15rem;
+  border: 1px solid var(--fresh-green);
+  border-radius: 17rem;
+  font-size: 13rem;
   font-weight: 500;
   text-align: center;
-  color: #333333;
-  line-height: 36rem;
-  letter-spacing: 0;
-  position: relative;
+  color: var(--fresh-green);
+  line-height: 32rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
 }
+#user .divOrders .btn .btnAgain:hover {
+  background-color: var(--fresh-green);
+  color: #ffffff;
+}
+/* --- End Copied Styles --- */
+
 
 #user .quitLogin {
-  margin: 0 10rem 10rem 10rem;
+  margin: 15rem 0 0 0; /* Adjust margin */
   height: 50rem;
-  opacity: 1;
-  background: #ffffff;
-  border-radius: 6rem;
-  opacity: 1;
+  background: var(--quit-button-bg);
+  border-radius: 10rem;
   font-size: 15rem;
-  font-family: PingFangSC, PingFangSC-Regular;
   font-weight: 500;
   text-align: center;
-  color: #333333;
+  color: var(--quit-button-text);
   line-height: 50rem;
+  border: 1px solid var(--quit-button-border);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#user .quitLogin:hover {
+  background-color: var(--quit-button-hover-bg);
 }

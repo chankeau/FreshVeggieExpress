@@ -58,7 +58,9 @@ public class LoginCheckFilter implements Filter {
             "/doc.html",
             "/webjars/**",
             "/swagger-resources",
-            "/v2/api-docs"
+            "/v2/api-docs",
+            "/user/register"
+
     };
 
     @Override
@@ -120,7 +122,6 @@ public class LoginCheckFilter implements Filter {
             // 执行到此 = 未登录且不在白名单
             log.warn("线程 {} - 用户未登录，访问被拦截：{}", threadId, requestURI);
 
-            // *** 核心修改：区分 API 请求和页面请求 ***
             String acceptHeader = request.getHeader("Accept");
             // 简单判断：如果 Accept 头包含 application/json，认为是 API 请求
             // 这个判断可能不完全准确，但对于常见的前后端分离场景通常有效
@@ -143,9 +144,8 @@ public class LoginCheckFilter implements Filter {
             return; // 处理完毕
 
         } finally {
-            // *** 核心修改：确保清理 BaseContext ***
             log.info("线程 {} - 请求处理完毕，清理 BaseContext", threadId);
-            BaseContext.removeCurrentId(); // 调用 BaseContext 的 remove 方法
+            BaseContext.removeCurrentId();
         }
     }
 

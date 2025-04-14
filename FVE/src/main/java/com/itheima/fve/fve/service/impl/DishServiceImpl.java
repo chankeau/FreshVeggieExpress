@@ -172,14 +172,13 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
         }
         log.info("准备删除产品，IDs: {}", ids);
 
-        // 1. （可选）添加业务检查：如产品是否启售中，是否关联了未删除的套餐等
-        // LambdaQueryWrapper<Dish> queryWrapper = new LambdaQueryWrapper<>();
-        // queryWrapper.in(Dish::getId, ids).eq(Dish::getStatus, 1);
-        // long activeCount = this.count(queryWrapper);
-        // if(activeCount > 0){
-        //     throw new CustomException("选中的产品中有正在售卖的，不能删除");
-        // }
-        // ...检查套餐关联...
+        // 1.添加业务检查：如产品是否启售中，是否关联了未删除的套餐等
+         LambdaQueryWrapper<Dish> queryWrapper = new LambdaQueryWrapper<>();
+         queryWrapper.in(Dish::getId, ids).eq(Dish::getStatus, 1);
+         long activeCount = this.count(queryWrapper);
+         if(activeCount > 0){
+             throw new CustomException("选中的产品中有正在售卖的，不能删除");
+         }
 
         // 2. 删除产品表中的数据
         // removeByIds 会根据 Dish 实体上的 @TableLogic 注解决定行为

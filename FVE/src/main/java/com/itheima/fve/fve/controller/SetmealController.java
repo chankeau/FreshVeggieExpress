@@ -131,7 +131,7 @@ public class SetmealController {
     @CacheEvict(value = "setmealCache", allEntries = true)
     public R<String> delete(@RequestParam("ids") List<Long> ids) {
         log.info("要删除的套餐 IDs: {}", ids);
-        // 删除套餐及其关联菜品
+        // 删除套餐及其关联商品
         setmealService.removeWithDish(ids);
         // 清除相关缓存 (虽然你的方法已经有 CacheEvict, 但如果 removeWithDish 内部没有清除相关缓存，这里可能需要额外处理，但通常 @CacheEvict 足够)
         return R.success("套餐删除成功");
@@ -174,7 +174,7 @@ public class SetmealController {
 
     /**
      * 移动端点击套餐图片查看套餐具体内容
-     * 返回套餐包含的菜品信息 DTO 列表
+     * 返回套餐包含的商品信息 DTO 列表
      *
      * @param setmealId 套餐 ID (路径变量)
      * @return R<List<DishDto>>
@@ -182,14 +182,14 @@ public class SetmealController {
     @GetMapping("/dish/{id}")
     // 注意：这个接口通常不需要缓存，或者缓存粒度要细化，因为它依赖 SetmealDish 和 Dish 两张表的数据
     public R<List<DishDto>> dish(@PathVariable("id") Long setmealId) { // 参数名建议与路径变量一致
-        log.info("查询套餐 {} 包含的菜品详情", setmealId);
+        log.info("查询套餐 {} 包含的商品详情", setmealId);
         LambdaQueryWrapper<SetmealDish> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(SetmealDish::getSetmealId, setmealId);
 
-        // 1. 查询套餐与菜品的关联记录 (SetmealDish)
+        // 1. 查询套餐与商品的关联记录 (SetmealDish)
         List<SetmealDish> setmealDishes = setmealDishService.list(queryWrapper);
 
-        // 2. 遍历关联记录，查询对应的菜品信息 (Dish)，并组装成 DishDto
+        // 2. 遍历关联记录，查询对应的商品信息 (Dish)，并组装成 DishDto
         List<DishDto> dishDtos = setmealDishes.stream().map((setmealDish) -> {
                     DishDto dishDto = new DishDto();
 
@@ -199,10 +199,10 @@ public class SetmealController {
                         // dishDto.setCopies(setmealDish.getCopies()); // 如果 DishDto 需要份数
                     }
 
-                    // 获取关联的菜品 ID
+                    // 获取关联的商品 ID
                     Long dishId = setmealDish.getDishId();
                     if (dishId != null) {
-                        // 根据菜品 ID 查询菜品基本信息 (Dish)
+                        // 根据商品 ID 查询商品基本信息 (Dish)
                         Dish dish = dishService.getById(dishId);
                         if (dish != null) {
                             // 将查询到的 Dish 属性复制到 DishDto
@@ -213,8 +213,8 @@ public class SetmealController {
                             dishDto.setCopies(setmealDish.getCopies()); // 确保份数被设置
 
                         } else {
-                            log.warn("套餐 {} (ID: {}) 关联的菜品 ID {} 未找到对应的菜品记录", setmealId, setmealDish.getId(), dishId);
-                            // 可以选择返回一个包含错误信息的 DTO 或直接跳过这个菜品
+                            log.warn("套餐 {} (ID: {}) 关联的商品 ID {} 未找到对应的商品记录", setmealId, setmealDish.getId(), dishId);
+                            // 可以选择返回一个包含错误信息的 DTO 或直接跳过这个商品
                             return null; // 返回 null，后续需要过滤掉
                         }
                     } else {
@@ -231,7 +231,7 @@ public class SetmealController {
     }
     // --- 添加这个方法来处理更新套餐的 PUT 请求 ---
     /**
-     * 更新套餐信息 (包含菜品)
+     * 更新套餐信息 (包含商品)
      *
      * @param setmealDto 包含更新信息的 DTO 对象
      * @return
@@ -259,9 +259,9 @@ public class SetmealController {
         }
     }
     /**
-     * 根据 ID 查询套餐信息和对应的菜品信息
+     * 根据 ID 查询套餐信息和对应的商品信息
      * @param id 套餐的 ID
-     * @return R<SetmealDto> 包含套餐和菜品列表的 DTO
+     * @return R<SetmealDto> 包含套餐和商品列表的 DTO
      */
     @GetMapping("/{id}")
     public R<SetmealDto> getById(@PathVariable Long id) {
